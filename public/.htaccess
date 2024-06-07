@@ -1,0 +1,14 @@
+# public/.htaccess
+
+RewriteEngine On
+
+# Ensure directory listings are disabled
+Options -Indexes
+
+# Enable the FollowSymLinks option
+Options +FollowSymLinks
+
+# Redirect all requests to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]

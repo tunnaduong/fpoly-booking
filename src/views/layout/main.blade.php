@@ -12,19 +12,18 @@
 
 <body>
     <div class="container-scroller">
-        <!-- partial:partials/_navbar.html -->
+        <!-- navbar -->
         @include('components.navbar.master')
 
-        <!-- partial -->
+        <!-- page-body-wrapper start -->
         <div class="container-fluid page-body-wrapper">
-            <!-- partial:partials/_settings-panel.html -->
+            <!-- settings-panel -->
             @include('components.settingPanel.master')
 
-            <!-- partial -->
-            <!-- partial:partials/_sidebar.html -->
-            @include('components.settingPanel.master')
+            <!-- sidebar -->
+            @include('components.sidebar.master')
             
-            <!-- partial -->
+            <!-- main-panel start -->
             <div class="main-panel">
                 @yield('content')
             </div>

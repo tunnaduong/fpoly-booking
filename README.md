@@ -3,3 +3,4 @@ Nền tảng đặt phòng online cho Trường Cao đẳng FPT Polytechnic Hà 
 
 Chú ý: Tất cả các define mặc định nằm trong config/config.php, thiết lập trước khi sử dụng
 
+Chú ý: Các config là riêng nên không upload lên server

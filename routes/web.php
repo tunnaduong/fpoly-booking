@@ -4,6 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../app/Support/Support.php';
 require_once __DIR__ . '/../config/config.php';
 
+use App\Controllers\Admin\UserAdminController;
 use Phroute\Phroute\RouteCollector;
 use Phroute\Phroute\Dispatcher;
 
@@ -14,8 +15,11 @@ try {
     
     // create route is here
     // start route 
+    $router->get('/', function(){
+        require_once PATH_ROOT . 'src/views/login.blade.php';
+    });
 
-
+    $router->post('/login', [UserAdminController::class, 'login']);
 
 
 

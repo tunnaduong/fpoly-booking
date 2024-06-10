@@ -18,15 +18,22 @@
 
         <!-- page-body-wrapper start -->
         <div class="container-fluid page-body-wrapper">
-            <!-- settings-panel -->
+            <!-- settings-panel & sidebar start-->
             @include('components.settingPanel.master')
-
-            <!-- sidebar -->
             @include('components.sidebar.master')
-            
+            <!-- settings-panel & sidebar end-->
+
             <!-- main-panel start -->
             <div class="main-panel">
-                @yield('content')
+                <!-- content-wrapper start -->
+                <div class="content-wrapper">
+                    @yield('content')
+                </div>
+                <!-- content-wrapper ends -->
+
+                <!-- footer start -->
+                @include('components.footer.master')
+                <!-- footer end -->
             </div>
             <!-- main-panel ends -->
         </div>

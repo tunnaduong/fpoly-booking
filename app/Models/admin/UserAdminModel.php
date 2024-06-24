@@ -53,7 +53,15 @@ class UserAdminModel extends BaseModel{
         $this->query($sql);
         return $this->query($sql);
     }
-    
+ 
+    public function updateProduct($id, $data)
+    {
+        $sql = "UPDATE $this->table SET name = :name, email = :email, password = :password, role = :role WHERE id = :id";
+        $this->query($sql);
+        return $this->execute($sql, $data);
+    }
+
+
 
 
 

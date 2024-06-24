@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <!-- Required meta tags -->
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <?php echo $this->yieldContent('title'); ?>
+ <!-- plugins:css -->
+ <?php echo $this->runChild('layout.style'); ?>
+ <?php echo $this->yieldContent('styles'); ?>
+</head>
+
+<body>
+ <div class="container-scroller">
+ <!-- navbar -->
+ <?php echo $this->runChild('components.navbar.master'); ?>
+
+ <!-- page-body-wrapper start -->
+ <div class="container-fluid page-body-wrapper">
+ <!-- settings-panel & sidebar start-->
+ <?php echo $this->runChild('components.settingPanel.master'); ?>
+ <?php echo $this->runChild('components.sidebar.master'); ?>
+ <!-- settings-panel & sidebar end-->
+
+ <!-- main-panel start -->
+ <div class="main-panel">
+ <!-- content-wrapper start -->
+ <div class="content-wrapper">
+ <?php echo $this->yieldContent('content'); ?>
+ </div>
+ <!-- content-wrapper ends -->
+
+ <!-- footer start -->
+ <?php echo $this->runChild('components.footer.master'); ?>
+ <!-- footer end -->
+ </div>
+ <!-- main-panel ends -->
+ </div>
+ <!-- page-body-wrapper ends -->
+ </div>
+ <!-- container-scroller -->
+
+ <!-- plugins:js -->
+ <?php echo $this->runChild('layout.script'); ?>
+ <?php echo $this->yieldContent('scripts'); ?>
+</body>
+
+</html>

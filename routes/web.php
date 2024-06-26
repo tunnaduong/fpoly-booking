@@ -1,5 +1,7 @@
 <?php
 
+use App\Controllers\Admin\RoomController;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../app/Support/Support.php';
 require_once __DIR__ . '/../config/config.php';
@@ -24,6 +26,8 @@ try {
     $router->get('/', [DashboardController::class, 'index']);
 
     $router->get('/logout', [DashboardController::class, 'logout']);
+
+    $router->get('/room/manage', [RoomController::class, 'index']);
 
     // end route
     $routeData = $router->getData();

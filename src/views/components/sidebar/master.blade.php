@@ -52,7 +52,7 @@
         [
             'icon' => 'icon-head',
             'title' => 'Người dùng',
-            'href' => '/user/manage',
+            'href' => '/users',
             'id' => 'user-manage',
             'havingArrow' => false,
         ],
@@ -65,10 +65,7 @@
     <ul class="nav">
         @foreach ($navLinks as $navLink)
             {{-- add dynamic active class to nav-item --}}
-            @php
-                $isActive = strpos($_SERVER['REQUEST_URI'], $navLink['href']) !== false ? 'active' : '';
-            @endphp
-            <li class="nav-item {{ $isActive }}">
+            <li class="nav-item {{ $_SERVER['REQUEST_URI'] === $navLink['href'] ? 'active' : '' }}">
                 <a class="nav-link" href="{{ $navLink['href'] }}" {!! $navLink['havingArrow'] == true
                     ? 'data-toggle="collapse" aria-expanded="false" aria-controls="' . $navLink['id'] . '"'
                     : '' !!}>

@@ -1,9 +1,9 @@
 @php
     $links = [
         'image' => [
-            'logo' => 'images/logo.svg',
-            'logo_mini' => 'images/logo-mini.svg',
-            'profile' => 'images/faces/unknown.png',
+            'logo' => '/images/logo.svg',
+            'logo_mini' => '/images/logo-mini.svg',
+            'profile' => '/images/faces/unknown.png',
         ],
         'page' => [
             'index' => BASE_URL,

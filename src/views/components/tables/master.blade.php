@@ -35,10 +35,26 @@
 <div class="col-lg-12 stretch-card">
     <div class="card">
         <div class="card-body">
+
             <h4 class="card-title">{{ $card['title'] }}</h4>
             <p class="card-description">{{ $card['description'] }}</p>
             <div class="table-responsive pt-3">
                 <table class="table {{ $tableStyle[$card['table']['style']] }}">
+                    {{-- No data table  --}}
+                    @if ($card['table']['data'] == null)
+                        <thead>
+                            <tr>
+                                <th>No data</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>No data</td>
+                            </tr>
+                        </tbody>
+                    @else
+
+                    {{-- Data table  --}}
                     <thead>
                         <tr>
                             @foreach ($card['table']['header'] as $header)
@@ -64,6 +80,7 @@
                             </tr>
                         @endforeach
                     </tbody>
+                    @endif
                 </table>
             </div>
         </div>

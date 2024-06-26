@@ -11,5 +11,6 @@
   <link rel="stylesheet" type="public/text/css" href="{{ BASE_URL . 'js/select.dataTables.min.css' }}">
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ BASE_URL . 'css/vertical-layout-light/style.css' }}">
+  <link rel="stylesheet" href="{{ BASE_URL . 'css/style.css' }}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{{ BASE_URL . 'images/favicon.png' }}">

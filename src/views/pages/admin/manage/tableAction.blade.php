@@ -1,4 +1,3 @@
-
     <div class="row">
         @include('components.mainTitleContent.master');
     </div>

@@ -39,7 +39,7 @@
 
                             <div class="pt-3">
 
-                                <form action="<?= BASE_URL ?>login" method="POST">
+                                <form action="<?= BASE_URL ?>auth/login" method="POST">
 
                                     <div class="form-group">
                                         <input type="email" name="email" class="form-control form-control-lg"
@@ -50,6 +50,13 @@
                                         <input type="password" name="pass" class="form-control form-control-lg"
                                             id="exampleInputPassword1" placeholder="Password">
                                     </div>
+
+                                    <!-- if error then show -->
+                                    @if (!empty($error))
+                                        <div class="alert alert-danger mt-4" role="alert">
+                                            {{ $error }}
+                                        </div>
+                                    @endif
 
                                     <div class="mt-3">
                                         <button type="submit"

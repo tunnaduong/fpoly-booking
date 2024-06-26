@@ -23,6 +23,11 @@ class DashboardController extends BaseController
         }
     }
 
+    public function login()
+    {
+        $this->render('login');
+    }
+
     public function logout()
     {
         session_destroy();

@@ -32,8 +32,8 @@ class UserAdminController extends BaseController
                     set_session('user', $user);
                     header('Location: ' . BASE_URL);
                 } else {
-                    // $this->render('login');
-                    echo "Đăng nhập thất bại";
+                    $error = "Tên đăng nhập hoặc mật khẩu không chính xác!";
+                    $this->render('login', compact("error"));
                 }
             } else {
                 echo 'không có data gửi lên';

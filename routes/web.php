@@ -18,9 +18,7 @@ try {
 
     // create route is here
     // start route 
-    $router->get('/login', function () {
-        require_once PATH_ROOT . 'src/views/login.blade.php';
-    });
+    $router->get('/login', [DashboardController::class, 'login']);
 
     $router->post('/auth/login', [UserAdminController::class, 'login']);
 

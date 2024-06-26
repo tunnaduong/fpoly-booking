@@ -7,6 +7,17 @@ use App\Models\BaseModel;
 class BookingModel extends BaseModel
 {
     protected $table = 'bookings';
+    protected $colName = [
+        'id' => 'ID',
+        'room_id' => 'Room Id',
+        'user_id' => 'User Id',
+        'time_created' => 'Time Create',
+        'time_start' => 'Time Start',
+        'time_end' => 'Time End',
+        'status' => 'Status',
+        'note' => 'Note',
+    ];
+
 
     // lấy toàn bộ dữ liệu từ bảng bookings
     public function getAll()

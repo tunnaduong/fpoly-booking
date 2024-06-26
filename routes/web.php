@@ -13,9 +13,8 @@ use Phroute\Phroute\Dispatcher;
 
 $url = $_GET['url'] ?? '/';
 
+$router = new RouteCollector();
 try {
-    $router = new RouteCollector();
-
     // create route is here
     // start route 
     $router->get('/login', [DashboardController::class, 'login']);
@@ -37,9 +36,9 @@ try {
 
     echo $response;
 } catch (Phroute\Phroute\Exception\HttpRouteNotFoundException $e) {
-    dd($e->getMessage());
+    (new DashboardController())->error404();
 } catch (Phroute\Phroute\Exception\HttpMethodNotAllowedException $e) {
-    dd($e->getMessage());
+    dd('2' . $e->getMessage());
 } catch (Exception $e) {
-    dd($e->getMessage());
+    dd('3' . $e->getMessage());
 }

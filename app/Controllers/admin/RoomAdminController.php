@@ -29,7 +29,7 @@ class RoomAdminController extends BaseController
     public function store()
     {
         $data = $_POST;
-        $this->roomAdminModel->insertRoom($data);
+        $this->roomAdminModel->insertRoom($data['code'], $data['room_child_id'], $data['status']);
         header('Location: ' . BASE_URL . 'admin/room');
     }
 

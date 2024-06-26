@@ -9,22 +9,24 @@ class RoomAdminModel extends BaseModel{
     // lấy toàn bộ dữ liệu 
     public function getAllRoom(){
         $sql = "SELECT * FROM $this->table";
-        $this->query($sql);
         return $this->query($sql);
     }
 
     // lấy dữ liệu theo id
     public function getRoomById($id){
         $sql = "SELECT * FROM $this->table WHERE id = :id";
-        $this->query($sql);
         return $this->execute($sql, ['id' => $id]);
     }
 
     // thêm dữ liệu
-    public function insertRoom($data, $getLastId = false){
+    public function insertRoom($code,$child_id,$status, $getLastId = false){
+        $data=[
+            'code' => $code,
+            'room_child_id' => $child_id,
+           'status' => $status,
+        ];
         return $this->create($this->table, $data, $getLastId);
     }
-
     // sửa phòng theo id
     public function editRoom($id,$data){
         return $this->update($this->table, $id, $data);

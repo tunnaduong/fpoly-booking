@@ -18,7 +18,7 @@ class RoomController extends BaseController
     public function index()
     {
         $rooms = $this->roomAdminModel->getAllRoom();
-        return $this->render('admin.room.index', compact('rooms'));
+        return $this->render('pages.admin.manage.room', compact('rooms'));
     }
 
     public function create()

@@ -3,7 +3,7 @@
         [
             'icon' => 'icon-grid',
             'title' => 'Bảng điều khiển',
-            'href' => BASE_URL,
+            'href' => '/',
             'havingArrow' => false,
             'id' => 'dashboard',
         ],
@@ -52,7 +52,7 @@
         [
             'icon' => 'icon-head',
             'title' => 'Người dùng',
-            'href' => '/user/manage',
+            'href' => '/users',
             'id' => 'user-manage',
             'havingArrow' => false,
         ],
@@ -64,7 +64,8 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         @foreach ($navLinks as $navLink)
-            <li class="nav-item">
+            {{-- add dynamic active class to nav-item --}}
+            <li class="nav-item {{ $_SERVER['REQUEST_URI'] === $navLink['href'] ? 'active' : '' }}">
                 <a class="nav-link" href="{{ $navLink['href'] }}" {!! $navLink['havingArrow'] == true
                     ? 'data-toggle="collapse" aria-expanded="false" aria-controls="' . $navLink['id'] . '"'
                     : '' !!}>

@@ -14,7 +14,7 @@ class RoomAdminModel extends BaseModel{
     }
 
     // lấy dữ liệu theo id
-    public function getAllRoomById($id){
+    public function getRoomById($id){
         $sql = "SELECT * FROM $this->table WHERE id = :id";
         $this->query($sql);
         return $this->execute($sql, ['id' => $id]);
@@ -36,7 +36,7 @@ class RoomAdminModel extends BaseModel{
         return $this->execute($sql, ['id' => $id]);
     }
     // đếm số bản ghi
-    public function countRoom(){
+    public function countRooms(){
         $sql = "SELECT COUNT(*) as count FROM $this->table";
         $this->query($sql);
         $result = $this->query($sql);

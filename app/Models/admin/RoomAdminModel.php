@@ -3,14 +3,8 @@ namespace App\Models\Admin;
 
 use App\Models\BaseModel;
 
-class RolesAdminModel extends BaseModel{
+class RoomAdminModel extends BaseModel{
     protected $table = 'rooms';
-    protected $colName = [
-        'id' => 'id',
-        'code' => 'code',
-        'room_child_id' => 'room_child_id',
-        'status' => 'status'
-    ];
 
     // lấy toàn bộ dữ liệu 
     public function getAllRoom(){
@@ -27,47 +21,20 @@ class RolesAdminModel extends BaseModel{
     }
 
     // thêm dữ liệu
-    public function insertRoom($data){
-        $columns = [];
-        $placeholders = [];
-        $values = [];
-
-        foreach ($data as $column => $value) {
-            $columns[] = $column;
-            $placeholders[] = ":$column";
-            $values[":$column"] = $value;
-        }
-
-        $columns = implode(", ", $columns);
-        $placeholders = implode(", ", $placeholders);
-
-        $sql = "INSERT INTO $this->table ($columns) VALUES ($placeholders)";
-        $this->query($sql);
-        return $this->execute($sql, $values);
+    public function insertRoom($data, $getLastId = false){
+        return $this->create($this->table, $data, $getLastId);
     }
 
     // sửa phòng theo id
-    public function editRoom($data){
-        $setClause = [];
-        foreach ($data as $column => $value) {
-            if ($column != 'id') {
-                $setClause[] = "$column = :$column";
-            }
-        }
-        $setClause = implode(", ", $setClause);
-
-        $sql = "UPDATE $this->table SET $setClause WHERE id = :id";
-        $this->query($sql);
-        return $this->execute($sql, $data);
+    public function editRoom($id,$data){
+        return $this->update($this->table, $id, $data);
     }
-
     // xóa phòng theo id
     public function deleteRoom($id){
         $sql = "DELETE FROM $this->table WHERE id = :id";
         $this->query($sql);
         return $this->execute($sql, ['id' => $id]);
     }
-
     // đếm số bản ghi
     public function countRoom(){
         $sql = "SELECT COUNT(*) as count FROM $this->table";

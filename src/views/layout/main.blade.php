@@ -8,6 +8,7 @@
     @yield('title')
     <!-- plugins:css -->
     @include('layout.style')
+    @yield('styles')
 </head>
 
 <body>
@@ -42,6 +43,7 @@
 
     <!-- plugins:js -->
     @include('layout.script')
+    @yield('scripts')
 </body>
 
 </html>

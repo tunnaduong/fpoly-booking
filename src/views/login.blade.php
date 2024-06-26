@@ -39,7 +39,7 @@
 
                             <div class="pt-3">
 
-                                <form action="<?= BASE_URL ?>login" method="POST">
+                                <form action="<?= BASE_URL ?>auth/login" method="POST">
 
                                     <div class="form-group">
                                         <input type="email" name="email" class="form-control form-control-lg"

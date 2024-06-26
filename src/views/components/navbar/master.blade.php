@@ -18,7 +18,7 @@
             <img src="{{ $links['image']['logo'] }}" class="mr-2" alt="logo" />
         </a>
         <a class="navbar-brand brand-logo-mini" href="{{ $links['page']['index'] }}">
-          <img src="{{ $links['image']['logo_mini'] }}" alt="logo" />
+            <img src="{{ $links['image']['logo_mini'] }}" alt="logo" />
         </a>
     </div>
     {{-- logo end  --}}
@@ -107,7 +107,7 @@
                         <i class="ti-settings text-primary"></i>
                         Settings
                     </a>
-                    <a class="dropdown-item">
+                    <a class="dropdown-item" href="/logout">
                         <i class="ti-power-off text-primary"></i>
                         Logout
                     </a>

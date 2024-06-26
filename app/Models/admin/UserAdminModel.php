@@ -8,31 +8,32 @@ class UserAdminModel extends BaseModel{
     protected $table = 'users';
 
     //lấy toàn bộ dữ liệu
-    public function getProduct()
+    public function getUsers()
     {
         $sql = "SELECT * FROM $this->table";
         $this->query($sql);
         return $this->query($sql);
 
     }
+
     //lấy dữ liệu theo id
-    public function getProductById($id)
+    public function getUserById($id)
     {
         $sql = "SELECT * FROM $this->table WHERE id = $id";
         $this->query($sql);
         return $this->query($sql);
     }
+  
     //thêm dữ liệu
-    public function addProduct($data)
+    public function addUser($data)
     {
         $sql = "INSERT INTO $this->table (name, email, password, role) VALUES (:name, :email, :password, :role)";
         $this->query($sql);
         return $this->execute($sql, $data);
     }
+  
     //sửa dữ liệu
-    public function editProduct($data)
-
-
+    public function editUser($data)
     {
         $sql = "UPDATE $this->table SET name = :name, email = :email, password = :password, role = :role WHERE id = :id";
         $this->query($sql);
@@ -40,30 +41,25 @@ class UserAdminModel extends BaseModel{
     }
 
     //xóa dữ liệu
-    public function deleteProduct($id)
+    public function deleteUser($id)
     {
         $sql = "DELETE FROM $this->table WHERE id = $id";
         $this->query($sql);
         return $this->execute($sql);
     }
+  
     //đếm số bản ghi
-    public function countProduct()
+    public function countUsers()
     {
         $sql = "SELECT * FROM $this->table";
         $this->query($sql);
         return $this->query($sql);
     }
  
-    public function updateProduct($id, $data)
+    public function updateUser($id, $data)
     {
         $sql = "UPDATE $this->table SET name = :name, email = :email, password = :password, role = :role WHERE id = :id";
         $this->query($sql);
         return $this->execute($sql, $data);
     }
-
-
-
-
-
-    
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 06, 2024 at 12:17 PM
+-- Generation Time: Jun 10, 2024 at 07:55 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -28,14 +28,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `bookings` (
-  `booking_id` int NOT NULL,
+  `id` int NOT NULL,
   `room_id` int DEFAULT NULL,
   `user_id` int DEFAULT NULL,
-  `booking_time_start` datetime NOT NULL,
-  `booking_time_end` datetime NOT NULL,
-  `booking_time_created` datetime DEFAULT CURRENT_TIMESTAMP,
-  `booking_status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `booking_note` text COLLATE utf8mb4_unicode_ci
+  `time_start` datetime NOT NULL,
+  `time_end` datetime NOT NULL,
+  `time_created` datetime DEFAULT CURRENT_TIMESTAMP,
+  `status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `note` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -45,8 +45,8 @@ CREATE TABLE `bookings` (
 --
 
 CREATE TABLE `roles` (
-  `role_id` int NOT NULL,
-  `role_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` int NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -56,10 +56,10 @@ CREATE TABLE `roles` (
 --
 
 CREATE TABLE `rooms` (
-  `room_id` int NOT NULL,
-  `room_code` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` int NOT NULL,
+  `code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `room_child_id` int DEFAULT NULL,
-  `room_status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+  `status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -69,8 +69,8 @@ CREATE TABLE `rooms` (
 --
 
 CREATE TABLE `rooms_child` (
-  `room_child_id` int NOT NULL,
-  `room_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` int NOT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -80,14 +80,14 @@ CREATE TABLE `rooms_child` (
 --
 
 CREATE TABLE `users` (
-  `user_id` int NOT NULL,
-  `user_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_code` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_phone` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` int NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role_id` int DEFAULT NULL,
-  `user_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `users` (
 -- Indexes for table `bookings`
 --
 ALTER TABLE `bookings`
-  ADD PRIMARY KEY (`booking_id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `room_id` (`room_id`),
   ADD KEY `user_id` (`user_id`);
 
@@ -106,26 +106,26 @@ ALTER TABLE `bookings`
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
-  ADD PRIMARY KEY (`role_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `rooms`
 --
 ALTER TABLE `rooms`
-  ADD PRIMARY KEY (`room_id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `room_child_id` (`room_child_id`);
 
 --
 -- Indexes for table `rooms_child`
 --
 ALTER TABLE `rooms_child`
-  ADD PRIMARY KEY (`room_child_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `role_id` (`role_id`);
 
 --
@@ -136,31 +136,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `booking_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `role_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `room_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `rooms_child`
 --
 ALTER TABLE `rooms_child`
-  MODIFY `room_child_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -170,20 +170,20 @@ ALTER TABLE `users`
 -- Constraints for table `bookings`
 --
 ALTER TABLE `bookings`
-  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`),
-  ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`),
+  ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `rooms`
 --
 ALTER TABLE `rooms`
-  ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`room_child_id`) REFERENCES `rooms_child` (`room_child_id`);
+  ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`room_child_id`) REFERENCES `rooms_child` (`id`);
 
 --
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`);
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

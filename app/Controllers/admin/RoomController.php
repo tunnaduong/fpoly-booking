@@ -4,15 +4,15 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 
-use App\Models\Admin\RoomAdminModel;
+use App\Models\Admin\RoomModel;
 
-class RoomAdminController extends BaseController
+class RoomController extends BaseController
 {
     protected $roomAdminModel;
 
     public function __construct()
     {
-        $this->roomAdminModel = new RoomAdminModel();
+        $this->roomAdminModel = new RoomModel();
     }
 
     public function index()

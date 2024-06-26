@@ -6,7 +6,7 @@ require_once __DIR__ . '/../config/config.php';
 
 start_session();
 
-use App\Controllers\Admin\UserAdminController;
+use App\Controllers\Admin\UserController;
 use App\Controllers\DashboardController;
 use Phroute\Phroute\RouteCollector;
 use Phroute\Phroute\Dispatcher;
@@ -20,7 +20,7 @@ try {
     // start route 
     $router->get('/login', [DashboardController::class, 'login']);
 
-    $router->post('/auth/login', [UserAdminController::class, 'login']);
+    $router->post('/auth/login', [UserController::class, 'login']);
 
     $router->get('/', [DashboardController::class, 'index']);
 

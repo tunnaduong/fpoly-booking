@@ -3,7 +3,7 @@ namespace App\Models\Admin;
 
 use App\Models\BaseModel;
 
-class RoomAdminModel extends BaseModel
+class RoomModel extends BaseModel
 {
     protected $table = 'rooms';
     protected $colName = [

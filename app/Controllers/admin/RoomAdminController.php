@@ -43,7 +43,7 @@ class RoomAdminController extends BaseController
     public function update()
     {
         $data = $_POST;
-        $this->roomAdminModel->editRoom($_POST['roomID'], $data);
+        $this->roomAdminModel->editRoom($data['roomID'], $data['code'], $data['room_child_id'], $data['status']);
         header('Location: ' . BASE_URL . 'admin/room');
     }
 

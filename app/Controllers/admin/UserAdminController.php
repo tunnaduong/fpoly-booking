@@ -55,19 +55,21 @@ class UserAdminController extends BaseController
         }
     }
 
-    public function createRoom()
+    public function createUser()
     {
-        return $this->render('admin.createRoom');
+        return $this->render('admin.createUser');
     }
 
-    public function deleteRoom()
+    public function deleteUser()
     {
-        $roomID = $this->getInput('roomID');
-        // $this->userAdminModel->removeRoom($roomID);
+        $userID = $this->getInput('userID');
+        return $this->userAdminModel->deleteUser($userID);
     }
 
-    public function editRoom()
+    public function editUser()
     {
-        return $this->render('admin.editRoom');
+        $userID = $this->getInput('userID');
+        $user = $this->userAdminModel->getUserById($userID);
+        return $this->render('admin.editUser', compact('user'));
     }
 }

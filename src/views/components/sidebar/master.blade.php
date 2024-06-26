@@ -2,100 +2,59 @@
     $navLinks = [
         [
             'icon' => 'icon-grid',
-            'title' => 'Dashboard',
-            'href' => BASE_URL_ADMIN,
+            'title' => 'Bảng điều khiển',
+            'href' => BASE_URL,
             'havingArrow' => false,
             'id' => 'dashboard',
         ],
         [
-            'icon' => 'icon-layout',
-            'title' => 'UI Elements',
-            'href' => '#ui-basic',
-            'id' => 'ui-basic',
-            'subMenu' => [
-                [
-                    'title' => 'Buttons',
-                    'href' => 'pages/ui-features/buttons.html',
-                ],
-                [
-                    'title' => 'Dropdowns',
-                    'href' => 'pages/ui-features/dropdowns.html',
-                ],
-                [
-                    'title' => 'Typography',
-                    'href' => 'pages/ui-features/typography.html',
-                ],
-            ],
-            'havingArrow' => true,
+            'icon' => 'mdi mdi-magnify',
+            'title' => 'Tìm kiếm',
+            'href' => '/search',
+            'id' => 'search',
+            'havingArrow' => false,
         ],
         [
-            'icon' => 'icon-columns',
-            'title' => 'Form elements',
-            'href' => '#form-elements',
-            'id' => 'form-elements',
-            'subMenu' => [
-                [
-                    'title' => 'Basic Elements',
-                    'href' => 'pages/forms/basic_elements.html',
-                ],
-            ],
-            'havingArrow' => true,
+            'icon' => 'mdi mdi-door-closed',
+            'title' => 'Quản lý phòng',
+            'href' => '/room/manage',
+            'id' => 'room-manage',
+            'havingArrow' => false,
         ],
         [
-            'icon' => 'icon-bar-graph',
-            'title' => 'Charts',
-            'href' => '#charts',
-            'id' => 'charts',
-            'subMenu' => [
-                [
-                    'title' => 'ChartJs',
-                    'href' => 'pages/charts/chartjs.html',
-                ],
-            ],
-            'havingArrow' => true,
+            'icon' => 'mdi mdi-plus',
+            'title' => 'Đặt phòng',
+            'href' => '/room/book',
+            'id' => 'room-book',
+            'havingArrow' => false,
         ],
         [
-            'icon' => 'icon-grid-2',
-            'title' => 'Tables',
-            'href' => '#tables',
-            'id' => 'tables',
-            'subMenu' => [
-                [
-                    'title' => 'Basic table',
-                    'href' => 'pages/tables/basic-table.html',
-                ],
-            ],
-            'havingArrow' => true,
+            'icon' => 'mdi mdi-calendar-clock',
+            'title' => 'Lịch trình',
+            'href' => '/schedule',
+            'id' => 'schedule',
+            'havingArrow' => false,
         ],
         [
-            'icon' => 'icon-contract',
-            'title' => 'Icons',
-            'href' => '#icons',
-            'id' => 'icons',
-            'subMenu' => [
-                [
-                    'title' => 'Mdi icons',
-                    'href' => 'pages/icons/mdi.html',
-                ],
-            ],
-            'havingArrow' => true,
+            'icon' => 'mdi mdi-history',
+            'title' => 'Lịch sử',
+            'href' => '/history',
+            'id' => 'history',
+            'havingArrow' => false,
+        ],
+        [
+            'icon' => 'mdi mdi-finance',
+            'title' => 'Thống kê',
+            'href' => '/statistic',
+            'id' => 'statistic',
+            'havingArrow' => false,
         ],
         [
             'icon' => 'icon-head',
-            'title' => 'User Pages',
-            'href' => '#auth',
-            'id' => 'auth',
-            'subMenu' => [
-                [
-                    'title' => 'Login',
-                    'href' => 'pages/samples/login.html',
-                ],
-                [
-                    'title' => 'Register',
-                    'href' => 'pages/samples/register.html',
-                ],
-            ],
-            'havingArrow' => true,
+            'title' => 'Người dùng',
+            'href' => '/user/manage',
+            'id' => 'user-manage',
+            'havingArrow' => false,
         ],
     ];
 @endphp
@@ -106,8 +65,9 @@
     <ul class="nav">
         @foreach ($navLinks as $navLink)
             <li class="nav-item">
-                <a class="nav-link" href="{{ $navLink['href'] }}" data-toggle="collapse" aria-expanded="false"
-                    aria-controls="{{ $navLink['id'] }}">
+                <a class="nav-link" href="{{ $navLink['href'] }}" {!! $navLink['havingArrow'] == true
+                    ? 'data-toggle="collapse" aria-expanded="false" aria-controls="' . $navLink['id'] . '"'
+                    : '' !!}>
                     <i class="{{ $navLink['icon'] }} menu-icon"></i>
                     <span class="menu-title">{{ $navLink['title'] }}</span>
                     @unless ($navLink['havingArrow'] == false)

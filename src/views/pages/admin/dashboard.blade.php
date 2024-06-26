@@ -1,4 +1,5 @@
 @extends('layout.main')
+@section('title', 'Dashboard Admin')
 @section('content')
     {{-- start mainTittleContent  --}}
     <div class="row">

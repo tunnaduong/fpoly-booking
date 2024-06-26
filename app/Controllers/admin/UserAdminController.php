@@ -4,18 +4,18 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 
-use App\Models\Admin\UserAdminModel;
+use App\Models\Admin\UserModel;
 
 use Exception;
 
 class UserAdminController extends BaseController
 {
 
-    protected $userAdminModel;
+    protected $userModel;
 
     public function __construct()
     {
-        $this->userAdminModel = new UserAdminModel();
+        $this->userModel = new UserModel();
     }
 
     public function login()
@@ -26,7 +26,7 @@ class UserAdminController extends BaseController
                 $email = $_POST['email'];
                 $password = $_POST['pass'];
 
-                $user = $this->userAdminModel->findByColumn('users', 'user_email', $email);
+                $user = $this->userModel->findByColumn('users', 'user_email', $email);
 
                 if ($user && $user['user_password'] == $password) {
                     set_session('user', $user);
@@ -53,7 +53,7 @@ class UserAdminController extends BaseController
     public function storeUser()
     {
         $data = $_POST;
-        $this->userAdminModel->addUser($data);
+        $this->userModel->addUser($data['name'], $data['code'], $data['email'], $data['password'], $data['phone'], $data['role_id'], $data['image']);
         header('Location: ' . BASE_URL . 'admin/user');
     }
 
@@ -61,14 +61,14 @@ class UserAdminController extends BaseController
     public function deleteUser()
     {
         $userID = $this->getInput('userID');
-        return $this->userAdminModel->deleteUser($userID);
+        return $this->userModel->deleteUser($userID);
     }
 
     // sửa user
     public function editUser()
     {
         $userID = $this->getInput('userID');
-        $user = $this->userAdminModel->getUserById($userID);
+        $user = $this->userModel->getUserById($userID);
         return $this->render('admin.user.edit', compact('user'));
     }
 
@@ -76,7 +76,7 @@ class UserAdminController extends BaseController
     public function updateUser()
     {
         $data = $_POST;
-        $this->userAdminModel->updateUser($data['userID'], $data);
+        $this->userModel->editUser($data['name'], $data['code'], $data['email'], $data['password'], $data['phone'], $data['role_id'], $data['image'], $data['id']);
         header('Location: ' . BASE_URL . 'admin/user');
     }
 }

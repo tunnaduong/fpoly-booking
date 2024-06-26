@@ -50,6 +50,7 @@ class UserAdminModel extends BaseModel
     public function countUser()
     {
         return $this->count($this->table);
+
     }
     public function showUser($id)
     {

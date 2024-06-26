@@ -28,7 +28,12 @@ class RoomAdminModel extends BaseModel{
         return $this->create($this->table, $data, $getLastId);
     }
     // sửa phòng theo id
-    public function editRoom($id,$data){
+    public function editRoom($id,$code,$child_id,$status){
+        $data=[
+            'code' => $code,
+            'room_child_id' => $child_id,
+           'status' => $status,
+        ];
         return $this->update($this->table, $id, $data);
     }
     // xóa phòng theo id

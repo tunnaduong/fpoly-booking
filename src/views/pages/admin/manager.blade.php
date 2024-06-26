@@ -1,14 +1,14 @@
 @extends('layout.main')
 @section('content')
+    {{-- Title start --}}
     <div class="row">
         @include('components.mainTitleContent.master');
     </div>
+    {{-- Title end  --}}
     <div class="row">
-        <button type="button" class="btn btn-primary">Primary</button>
-        <form action="" method="POST">
-            <input type="search" name="txtsearch">
-            <button type="submit">Search</button>
-        </form>
+        <button type="submit"><a href="">Add</a></button>
+        <input type="search" placeholder="Search" name="txtsearch" id="">
+        <button type="submit"><a href="">Search</a></button>
     </div>
     <div class="row">
         @include('components.tables.master');

@@ -3,6 +3,5 @@
     @php
         $mainTitleContent = 'User';
     @endphp
-
-    @include('pages.admin.manage.tableAction')
+    @include('pages.admin.manage.tableAction');
 @endsection

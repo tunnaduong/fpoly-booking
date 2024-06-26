@@ -49,9 +49,18 @@
                     <tbody>
                         @foreach ($card['table']['data'] as $row)
                             <tr class="{{ $row['class'] }}">
-                                @foreach ($row as $data)
+                                {{-- Data Colum  --}}
+                                @foreach ($row as $col => $data)
                                     <td>{{ $data }}</td>
                                 @endforeach
+
+                                {{-- Action Colum  --}}
+                                <td>
+                                    <a href="" class="btn btn-success"
+                                        onclick="return confirm('Are you sure you want to edit?')">Edit</a>
+                                    <a href="" class="btn btn-danger"
+                                        onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

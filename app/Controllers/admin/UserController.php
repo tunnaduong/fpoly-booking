@@ -8,7 +8,7 @@ use App\Models\Admin\UserModel;
 
 use Exception;
 
-class UserAdminController extends BaseController
+class UserController extends BaseController
 {
 
     protected $userModel;
@@ -26,9 +26,9 @@ class UserAdminController extends BaseController
                 $email = $_POST['email'];
                 $password = $_POST['pass'];
 
-                $user = $this->userModel->findByColumn('users', 'user_email', $email);
+                $user = $this->userModel->findByColumn('users', 'email', $email);
 
-                if ($user && $user['user_password'] == $password) {
+                if ($user && $user['password'] == $password) {
                     set_session('user', $user);
                     header('Location: ' . BASE_URL);
                 } else {

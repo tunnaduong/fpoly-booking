@@ -2,7 +2,7 @@
 @section('content')
     {{-- Title start --}}
     <div class="row">
-        @include('components.mainTitleContent.master');
+        @include('components.mainTitleContent.master')
     </div>
     {{-- Title end  --}}
     <div class="row">
@@ -11,6 +11,6 @@
         <button type="submit"><a href="">Search</a></button>
     </div>
     <div class="row">
-        @include('components.tables.master');
+        @include('components.tables.master')
     </div>
 @endsection

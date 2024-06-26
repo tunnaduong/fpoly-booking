@@ -3,7 +3,7 @@
         'image' => [
             'logo' => 'images/logo.svg',
             'logo_mini' => 'images/logo-mini.svg',
-            'profile' => 'images/faces/face28.jpg',
+            'profile' => 'images/faces/unknown.png',
         ],
         'page' => [
             'index' => BASE_URL,
@@ -100,7 +100,8 @@
             </li>
             <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                    <img src="{{ $links['image']['profile'] }}" alt="profile" />
+                    <img src="{{ $_SESSION['user']['user_image'] == null ? $links['image']['profile'] : $_SESSION['user']['user_image'] }}"
+                        alt="profile" />
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                     <a class="dropdown-item">

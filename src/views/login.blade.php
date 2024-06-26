@@ -51,6 +51,13 @@
                                             id="exampleInputPassword1" placeholder="Password">
                                     </div>
 
+                                    <!-- if error then show -->
+                                    @if (!empty($error))
+                                        <div class="alert alert-danger mt-4" role="alert">
+                                            {{ $error }}
+                                        </div>
+                                    @endif
+
                                     <div class="mt-3">
                                         <button type="submit"
                                             class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN

@@ -4,66 +4,56 @@ namespace App\Models\Admin;
 
 use App\Models\BaseModel;
 
-class UserAdminModel extends BaseModel{
+class UserAdminModel extends BaseModel
+{
     protected $table = 'users';
+    protected $data = [
+        'user_name' => $user_name,
+        'user_code' => $user_code,
+        'user_email' => $user_email,
+        'user_password' => $user_password,
+        'user_phone' => $user_phone,
+        'role_id' => $role_id,
+        'user_image' => $user_image,
+
+    ];
 
     //lấy toàn bộ dữ liệu
-    public function getProduct()
+    public function getUser()
     {
-        $sql = "SELECT * FROM $this->table";
-        $this->query($sql);
-        return $this->query($sql);
+        return $this->findAll($this->table);
 
     }
     //lấy dữ liệu theo id
-    public function getProductById($id)
+    public function getUserById($id)
     {
-        $sql = "SELECT * FROM $this->table WHERE id = $id";
-        $this->query($sql);
-        return $this->query($sql);
+        return $this->find($this->table, $id);
     }
     //thêm dữ liệu
-    public function addProduct($data)
+    public function addUser($data, $getLastId = false)
     {
-        $sql = "INSERT INTO $this->table (name, email, password, role) VALUES (:name, :email, :password, :role)";
-        $this->query($sql);
-        return $this->execute($sql, $data);
+
+        return $this->create($this->table, $data, $getLastId = false);
     }
     //sửa dữ liệu
-    public function editProduct($data)
-
-
+    public function editUser($id, $data)
     {
-        $sql = "UPDATE $this->table SET name = :name, email = :email, password = :password, role = :role WHERE id = :id";
-        $this->query($sql);
-        return $this->execute($sql, $data);
+        return $this->update($this->table, $id, $data);
     }
 
     //xóa dữ liệu
-    public function deleteProduct($id)
+    public function deleteUser($id)
     {
-        $sql = "DELETE FROM $this->table WHERE id = $id";
-        $this->query($sql);
-        return $this->execute($sql);
+        return $this->delete($this->table, $id);
     }
     //đếm số bản ghi
-    public function countProduct()
+    public function countUser()
     {
-        $sql = "SELECT * FROM $this->table";
-        $this->query($sql);
-        return $this->query($sql);
+        return $this->count($this->table);
     }
- 
-    public function updateProduct($id, $data)
+    public function showUser($id)
     {
-        $sql = "UPDATE $this->table SET name = :name, email = :email, password = :password, role = :role WHERE id = :id";
-        $this->query($sql);
-        return $this->execute($sql, $data);
+        return $this->read($this->table, $id);
     }
 
-
-
-
-
-    
 }

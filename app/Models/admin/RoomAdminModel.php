@@ -3,8 +3,7 @@ namespace App\Models\Admin;
 
 use App\Models\BaseModel;
 
-class RolesAdminModel extends BaseModel
-{
+class RolesAdminModel extends BaseModel{
     protected $table = 'rooms';
     protected $colName = [
         'id' => 'id',
@@ -14,24 +13,21 @@ class RolesAdminModel extends BaseModel
     ];
 
     // lấy toàn bộ dữ liệu 
-    public function getAllRoom()
-    {
+    public function getAllRoom(){
         $sql = "SELECT * FROM $this->table";
         $this->query($sql);
         return $this->query($sql);
     }
 
     // lấy dữ liệu theo id
-    public function getAllRoomById($id)
-    {
+    public function getAllRoomById($id){
         $sql = "SELECT * FROM $this->table WHERE id = :id";
         $this->query($sql);
         return $this->execute($sql, ['id' => $id]);
     }
 
     // thêm dữ liệu
-    public function insertRoom($data)
-    {
+    public function insertRoom($data){
         $columns = [];
         $placeholders = [];
         $values = [];
@@ -51,8 +47,7 @@ class RolesAdminModel extends BaseModel
     }
 
     // sửa phòng theo id
-    public function editRoom($data)
-    {
+    public function editRoom($data){
         $setClause = [];
         foreach ($data as $column => $value) {
             if ($column != 'id') {
@@ -67,16 +62,14 @@ class RolesAdminModel extends BaseModel
     }
 
     // xóa phòng theo id
-    public function deleteRoom($id)
-    {
+    public function deleteRoom($id){
         $sql = "DELETE FROM $this->table WHERE id = :id";
         $this->query($sql);
         return $this->execute($sql, ['id' => $id]);
     }
 
     // đếm số bản ghi
-    public function countRoom()
-    {
+    public function countRoom(){
         $sql = "SELECT COUNT(*) as count FROM $this->table";
         $this->query($sql);
         $result = $this->query($sql);

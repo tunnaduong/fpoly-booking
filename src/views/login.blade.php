@@ -43,7 +43,7 @@
 
                                     <div class="form-group">
                                         <input type="email" name="email" class="form-control form-control-lg"
-                                            id="exampleInputEmail1" placeholder="Username">
+                                            id="exampleInputEmail1" placeholder="Email">
                                     </div>
 
                                     <div class="form-group">

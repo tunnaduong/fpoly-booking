@@ -2,19 +2,18 @@
 
 namespace App\Controllers;
 
-// use PHPMailer\PHPMailer\PHPMailer;
-// use PHPMailer\PHPMailer\Exception;
-
 use eftec\bladeone\BladeOne;
 
 class BaseController
 {
-
     /**
      * Render một view Blade.
      *
      * @param string $viewFile Tên file view cần render.
      * @param array $data Dữ liệu truyền vào view.
+     * 
+     * Cách sử dụng:
+     * $this->render('home', ['name' => 'John']);
      */
     protected function render($viewFile, $data = [])
     {
@@ -29,6 +28,9 @@ class BaseController
      *
      * @param string $error Thông báo lỗi.
      * @return string Thông báo lỗi thân thiện.
+     * 
+     * Cách sử dụng:
+     * $friendlyError = $this->getFriendlyErrorMessage($sqlError);
      */
     protected function getFriendlyErrorMessage($error)
     {
@@ -38,7 +40,6 @@ class BaseController
             'Data too long for column' => 'Dữ liệu cung cấp quá dài cho một trong các trường.',
             'Incorrect integer value' => 'Giá trị không đúng cho trường kiểu số nguyên.',
             'Cannot add or update a child row: a foreign key constraint fails' => 'Không thể thêm hoặc cập nhật bản ghi này vì nó tham chiếu đến một bản ghi không hợp lệ.',
-            // Thêm các ánh xạ lỗi khác nếu cần
         ];
 
         foreach ($errorMessages as $pattern => $message) {
@@ -47,7 +48,6 @@ class BaseController
             }
         }
 
-        // Trả về lỗi gốc nếu không khớp với bất kỳ lỗi nào
         return 'Đã xảy ra lỗi: ' . $error;
     }
 
@@ -57,6 +57,12 @@ class BaseController
      * @param array $data Dữ liệu yêu cầu.
      * @param array $rules Các quy tắc xác thực.
      * @return array Một mảng các thông báo lỗi, nếu có.
+     * 
+     * Cách sử dụng:
+     * $errors = $this->validateRequest($_POST, ['name' => 'required']);
+     * if (!empty($errors)) {
+     *     // Xử lý lỗi
+     * }
      */
     protected function validateRequest($data, $rules)
     {
@@ -65,7 +71,6 @@ class BaseController
             if ($rule === 'required' && empty($data[$field])) {
                 $errors[] = "$field là bắt buộc";
             }
-            // Thêm các quy tắc xác thực khác nếu cần
         }
         return $errors;
     }
@@ -74,6 +79,9 @@ class BaseController
      * Chuyển hướng đến một URL cụ thể.
      *
      * @param string $url URL để chuyển hướng.
+     * 
+     * Cách sử dụng:
+     * $this->redirect('/home');
      */
     protected function redirect($url)
     {
@@ -86,6 +94,9 @@ class BaseController
      *
      * @param mixed $data Dữ liệu để gửi trong phản hồi.
      * @param int $status Mã trạng thái HTTP (mặc định là 200).
+     * 
+     * Cách sử dụng:
+     * $this->jsonResponse(['success' => true]);
      */
     protected function jsonResponse($data, $status = 200)
     {
@@ -99,6 +110,11 @@ class BaseController
      * Kiểm tra nếu phương thức yêu cầu là POST.
      *
      * @return bool Trả về true nếu là POST, ngược lại false.
+     * 
+     * Cách sử dụng:
+     * if ($this->isPost()) {
+     *     // Xử lý yêu cầu POST
+     * }
      */
     protected function isPost()
     {
@@ -109,6 +125,11 @@ class BaseController
      * Kiểm tra nếu phương thức yêu cầu là GET.
      *
      * @return bool Trả về true nếu là GET, ngược lại false.
+     * 
+     * Cách sử dụng:
+     * if ($this->isGet()) {
+     *     // Xử lý yêu cầu GET
+     * }
      */
     protected function isGet()
     {
@@ -119,6 +140,11 @@ class BaseController
      * Kiểm tra nếu phương thức yêu cầu là PUT.
      *
      * @return bool Trả về true nếu là PUT, ngược lại false.
+     * 
+     * Cách sử dụng:
+     * if ($this->isPut()) {
+     *     // Xử lý yêu cầu PUT
+     * }
      */
     protected function isPut()
     {
@@ -129,6 +155,11 @@ class BaseController
      * Kiểm tra nếu phương thức yêu cầu là DELETE.
      *
      * @return bool Trả về true nếu là DELETE, ngược lại false.
+     * 
+     * Cách sử dụng:
+     * if ($this->isDelete()) {
+     *     // Xử lý yêu cầu DELETE
+     * }
      */
     protected function isDelete()
     {
@@ -141,6 +172,9 @@ class BaseController
      * @param string $key Khóa của giá trị cần lấy.
      * @param mixed $default Giá trị mặc định nếu khóa không tồn tại.
      * @return mixed Giá trị đầu vào hoặc giá trị mặc định.
+     * 
+     * Cách sử dụng:
+     * $value = $this->getInput('name', 'default');
      */
     protected function getInput($key, $default = null)
     {
@@ -152,6 +186,9 @@ class BaseController
      *
      * @param string $key Khóa của thông báo.
      * @param string $message Nội dung thông báo.
+     * 
+     * Cách sử dụng:
+     * $this->setFlash('success', 'Đăng nhập thành công');
      */
     protected function setFlash($key, $message)
     {
@@ -166,6 +203,9 @@ class BaseController
      *
      * @param string $key Khóa của thông báo.
      * @return string|null Nội dung thông báo hoặc null nếu không tồn tại.
+     * 
+     * Cách sử dụng:
+     * $message = $this->getFlash('success');
      */
     protected function getFlash($key)
     {
@@ -184,6 +224,9 @@ class BaseController
      * Kiểm tra người dùng hiện tại đã được xác thực chưa.
      *
      * @return mixed Thông tin người dùng nếu đã xác thực, ngược lại null.
+     * 
+     * Cách sử dụng:
+     * $user = $this->auth();
      */
     protected function auth()
     {
@@ -197,6 +240,9 @@ class BaseController
      * Đặt thông tin người dùng đã xác thực.
      *
      * @param mixed $user Thông tin người dùng.
+     * 
+     * Cách sử dụng:
+     * $this->setAuth($user);
      */
     protected function setAuth($user)
     {
@@ -208,6 +254,9 @@ class BaseController
 
     /**
      * Hủy thông tin người dùng đã xác thực.
+     * 
+     * Cách sử dụng:
+     * $this->destroyAuth();
      */
     protected function destroyAuth()
     {
@@ -222,6 +271,9 @@ class BaseController
      *
      * @param string $data Dữ liệu đầu vào.
      * @return string Dữ liệu đã được làm sạch.
+     * 
+     * Cách sử dụng:
+     * $cleanData = $this->sanitize($inputData);
      */
     protected function sanitize($data)
     {
@@ -234,6 +286,9 @@ class BaseController
      * @param string $date Ngày tháng cần định dạng.
      * @param string $format Định dạng đầu ra (mặc định là 'Y-m-d H:i:s').
      * @return string Ngày tháng đã được định dạng.
+     * 
+     * Cách sử dụng:
+     * $formattedDate = $this->formatDate('2024-01-01', 'd/m/Y');
      */
     protected function formatDate($date, $format = 'Y-m-d H:i:s')
     {
@@ -271,57 +326,60 @@ class BaseController
     }
 
     /**
-     * Ghi log thông điệp vào file log.
+     * Ghi log lỗi vào file.
      *
-     * @param string $message Thông điệp log.
-     * @param string $file Tên file log.
+     * @param string $errorMessage Nội dung lỗi cần ghi log.
+     * 
+     * Cách sử dụng:
+     * $this->logError('Lỗi không xác định');
      */
-    protected function logger($message, $file = 'app.log')
+    protected function logError($errorMessage)
     {
-        $filePath = __DIR__ . "/../../logs/" . $file;
-        $timestamp = date('Y-m-d H:i:s');
-        $logMessage = "[$timestamp] $message" . PHP_EOL;
-        file_put_contents($filePath, $logMessage, FILE_APPEND);
+        $logFile = __DIR__ . "/../../storage/error.log";
+        $logMessage = '[' . date('Y-m-d H:i:s') . '] ' . $errorMessage . PHP_EOL;
+        error_log($logMessage, 3, $logFile);
     }
+
+    
 
     /**
-     * Upload file lên server.
+     * Xử lý tệp tải lên và lưu vào thư mục chỉ định.
      *
-     * @param array $file Thông tin file upload.
-     * @param string $destinationDir Thư mục đích để lưu file.
-     * @return array Kết quả upload (success, path hoặc errors).
+     * @param string $fileField Tên trường tệp trong yêu cầu.
+     * @param string $uploadDir Đường dẫn thư mục lưu trữ tệp tải lên.
+     * @param array $allowedExtensions Mảng các phần mở rộng tệp cho phép.
+     * @return string|false Đường dẫn tới tệp đã tải lên hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $uploadedFile = $this->handleUploadFile('avatar', '/uploads', ['jpg', 'png']);
      */
-    protected function uploadFile($file, $destinationDir)
+    protected function handleUploadFile($fileField, $uploadDir, $allowedExtensions)
     {
-        $errors = [];
-        $fileType = pathinfo($file['name'], PATHINFO_EXTENSION);
-        $fileName = time() . '.' . $fileType;
-        $targetFilePath = rtrim($destinationDir, '/') . '/' . $fileName;
-
-        // Kiểm tra kích thước file
-        if ($file['size'] > 5000000) {
-            $errors[] = 'File quá lớn.';
+        if (!isset($_FILES[$fileField])) {
+            return false;
         }
 
-        // Kiểm tra loại file
-        $allowedTypes = ['jpg', 'jpeg', 'png', 'gif', 'pdf'];
-        if (!in_array($fileType, $allowedTypes)) {
-            $errors[] = 'Loại file không hợp lệ.';
+        $file = $_FILES[$fileField];
+        $fileName = basename($file['name']);
+        $targetPath = $uploadDir . '/' . $fileName;
+        $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+        if (!in_array($fileExtension, $allowedExtensions)) {
+            return false;
         }
 
-        if (empty($errors)) {
-            if (move_uploaded_file($file['tmp_name'], $targetFilePath)) {
-                return ['success' => true, 'path' => $targetFilePath];
-            } else {
-                $errors[] = 'Lỗi khi upload file.';
-            }
+        if (move_uploaded_file($file['tmp_name'], $targetPath)) {
+            return $targetPath;
+        } else {
+            return false;
         }
-
-        return ['success' => false, 'errors' => $errors];
     }
+
 
     /**
      * Chuyển hướng trở lại trang trước đó.
+     * Cách sử dụng:
+     * $this->back();
      */
     protected function back()
     {
@@ -331,24 +389,24 @@ class BaseController
     }
 
     /**
-     * Phân trang dữ liệu.
+     * Phân trang cho kết quả truy vấn.
      *
-     * @param array $data Dữ liệu cần phân trang.
-     * @param int $page Trang hiện tại.
-     * @param int $perPage Số lượng mục trên mỗi trang.
-     * @return array Mảng chứa dữ liệu phân trang.
+     * @param int $currentPage Trang hiện tại.
+     * @param int $perPage Số bản ghi trên mỗi trang.
+     * @param int $totalItems Tổng số bản ghi.
+     * @param string $baseUrl URL cơ sở của phân trang.
+     * @return array Thông tin phân trang (trang hiện tại, tổng số trang).
+     * 
+     * Cách sử dụng:
+     * $pagination = $this->paginate(1, 10, 100, '/products');
      */
-    protected function paginate($data, $page = 1, $perPage = 10)
+    protected function paginate($currentPage, $perPage, $totalItems, $baseUrl)
     {
-        $total = count($data);
-        $start = ($page - 1) * $perPage;
-        $paginatedData = array_slice($data, $start, $perPage);
+        $totalPages = ceil($totalItems / $perPage);
         return [
-            'data' => $paginatedData,
-            'total' => $total,
-            'per_page' => $perPage,
-            'current_page' => $page,
-            'last_page' => ceil($total / $perPage),
+            'current_page' => $currentPage,
+            'total_pages' => $totalPages,
+            'base_url' => $baseUrl,
         ];
     }
 

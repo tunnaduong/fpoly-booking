@@ -33,4 +33,9 @@ class DashboardController extends BaseController
         session_destroy();
         header('Location: ' . BASE_URL . 'login');
     }
+
+    public function error404()
+    {
+        $this->render('pages.error-404');
+    }
 }

@@ -55,19 +55,40 @@ class UserAdminController extends BaseController
         }
     }
 
-    public function createRoom()
+    // tạo user
+    public function createUser()
     {
-        return $this->render('admin.createRoom');
+        return $this->render('admin.user.create');
     }
 
-    public function deleteRoom()
+    // lưu user
+    public function storeUser()
     {
-        $roomID = $this->getInput('roomID');
-        // $this->userAdminModel->removeRoom($roomID);
+        $data = $_POST;
+        $this->userAdminModel->addUser($data);
+        header('Location: ' . BASE_URL . 'admin/user');
     }
 
-    public function editRoom()
+    // xóa user
+    public function deleteUser()
     {
-        return $this->render('admin.editRoom');
+        $userID = $this->getInput('userID');
+        return $this->userAdminModel->deleteUser($userID);
+    }
+
+    // sửa user
+    public function editUser()
+    {
+        $userID = $this->getInput('userID');
+        $user = $this->userAdminModel->getUserById($userID);
+        return $this->render('admin.user.edit', compact('user'));
+    }
+
+    // cập nhật user
+    public function updateUser()
+    {
+        $data = $_POST;
+        $this->userAdminModel->updateUser($data['userID'], $data);
+        header('Location: ' . BASE_URL . 'admin/user');
     }
 }

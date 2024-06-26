@@ -9,5 +9,5 @@
     </form>
 </div>
 <div class="row">
-    @include('components.tables.master');
+    @include('components.tables.master')
 </div>

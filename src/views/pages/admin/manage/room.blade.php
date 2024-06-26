@@ -3,5 +3,5 @@
     @php
         $mainTitleContent = 'Room';
     @endphp
-    @include('pages.admin.manage.tableAction');
+    @include('pages.admin.manage.tableAction')
 @endsection

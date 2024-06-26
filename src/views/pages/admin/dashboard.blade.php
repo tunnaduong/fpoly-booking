@@ -2,19 +2,19 @@
 @section('content')
     {{-- Title start --}}
     <div class="row">
-        @include('components.mainTitleContent.master');
+        @include('components.mainTitleContent.master')
     </div>
     {{-- Title end  --}}
     {{-- Hero start  --}}
     <div class="row">
-        @include('components.hero.master');
-        @include('components.dataCard.master');
+        @include('components.hero.master')
+        @include('components.dataCard.master')
     </div>
     {{-- Hero end ? --}}
     {{-- Overview start --}}
     <div class="row">
-        @include('components.overviewChart.colChart');
-        @include('components.overviewChart.lineChart');
+        @include('components.overviewChart.colChart')
+        @include('components.overviewChart.lineChart')
     </div>
     {{-- Overview end --}}
 @endsection

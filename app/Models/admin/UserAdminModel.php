@@ -19,24 +19,27 @@ class UserAdminModel extends BaseModel
     ];
 
     //lấy toàn bộ dữ liệu
-    public function getUser()
+    public function getUsers()
     {
         return $this->findAll($this->table);
 
     }
+
     //lấy dữ liệu theo id
     public function getUserById($id)
     {
         return $this->find($this->table, $id);
     }
+  
     //thêm dữ liệu
-    public function addUser($data, $getLastId = false)
+    public function addUser($data)
     {
 
         return $this->create($this->table, $data, $getLastId = false);
     }
+  
     //sửa dữ liệu
-    public function editUser($id, $data)
+    public function editUser($data)
     {
         return $this->update($this->table, $id, $data);
     }
@@ -46,15 +49,16 @@ class UserAdminModel extends BaseModel
     {
         return $this->delete($this->table, $id);
     }
+  
     //đếm số bản ghi
-    public function countUser()
+    public function countProduct()
     {
         return $this->count($this->table);
 
     }
-    public function showUser($id)
+ 
+    public function updateUser($id, $data)
     {
         return $this->read($this->table, $id);
     }
-
 }

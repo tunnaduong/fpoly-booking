@@ -10,13 +10,13 @@ class DashboardController extends BaseController
     {
         $user = get_session('user');
         if ($user['role_id'] == 1) {
-            $this->render('admin.dashboard');
+            $this->render('pages.admin.dashboard');
         }
         if ($user['role_id'] == 2) {
-            $this->render('manage.dashboard');
+            $this->render('pages.admin.manage.dashboard');
         }
         if ($user['role_id'] == 3) {
-            $this->render('user.dashboard');
+            $this->render('pages.user.dashboard');
         }
         if ($user == null) {
             header('Location: ' . BASE_URL . 'login');
@@ -32,5 +32,10 @@ class DashboardController extends BaseController
     {
         session_destroy();
         header('Location: ' . BASE_URL . 'login');
+    }
+
+    public function error404()
+    {
+        $this->render('pages.error-404');
     }
 }

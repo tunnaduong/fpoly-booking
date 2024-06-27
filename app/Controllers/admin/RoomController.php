@@ -4,21 +4,21 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 
-use App\Models\Admin\RoomAdminModel;
+use App\Models\Admin\RoomModel;
 
-class RoomAdminController extends BaseController
+class RoomController extends BaseController
 {
     protected $roomAdminModel;
 
     public function __construct()
     {
-        $this->roomAdminModel = new RoomAdminModel();
+        $this->roomAdminModel = new RoomModel();
     }
 
     public function index()
     {
         $rooms = $this->roomAdminModel->getAllRoom();
-        return $this->render('admin.room.index', compact('rooms'));
+        return $this->render('pages.admin.manage.room', compact('rooms'));
     }
 
     public function create()

@@ -36,6 +36,18 @@ class BaseModel
      * @param array $params Các tham số truy vấn.
      * @param bool $getAll Lấy tất cả kết quả hay chỉ một kết quả.
      * @return array|false Kết quả truy vấn hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $sql = "SELECT * FROM users WHERE id = :id";
+     * $params = ['id' => 1];
+     * $users = $this->query($sql, $params);
+     * if ($users !== false) {
+     *     foreach ($users as $user) {
+     *         // Xử lý kết quả trả về
+     *     }
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function query($sql, $params = [], $getAll = true)
     {
@@ -56,6 +68,19 @@ class BaseModel
      * @param array $data Dữ liệu bản ghi.
      * @param bool $getLastId Trả về ID cuối cùng nếu thành công.
      * @return mixed ID của bản ghi mới hoặc true nếu thành công, false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $data = [
+     *     'username' => 'john_doe',
+     *     'email' => 'john.doe@example.com',
+     *     'password' => 'hashed_password'
+     * ];
+     * $result = $this->create('users', $data, true);
+     * if ($result !== false) {
+     *     // Xử lý thành công, $result chứa ID mới được tạo nếu $getLastId là true
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function create($table, $data, $getLastId = false)
     {
@@ -78,6 +103,15 @@ class BaseModel
      * @param string $table Tên bảng.
      * @param int $id ID của bản ghi.
      * @return array|false Bản ghi hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $userId = 1;
+     * $user = $this->read('users', $userId);
+     * if ($user !== false) {
+     *     // Xử lý dữ liệu của $user
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function read($table, $id)
     {
@@ -99,6 +133,16 @@ class BaseModel
      * @param int $id ID của bản ghi.
      * @param array $data Dữ liệu cập nhật.
      * @return bool Trả về true nếu thành công, false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $userId = 1;
+     * $updateData = ['username' => 'new_username', 'email' => 'new_email@example.com'];
+     * $result = $this->update('users', $userId, $updateData);
+     * if ($result !== false) {
+     *     // Xử lý thành công
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function update($table, $id, $data)
     {
@@ -123,6 +167,16 @@ class BaseModel
      * @param array $conditions Điều kiện để xác định bản ghi cần cập nhật.
      * @param array $data Dữ liệu mới để cập nhật.
      * @return bool True nếu cập nhật thành công, False nếu thất bại.
+     * 
+     * Cách sử dụng:
+     * $conditions = ['id' => 1, 'status' => 'active'];
+     * $data = ['name' => 'Updated Name', 'email' => 'updated_email@example.com'];
+     * $result = $this->updateByCondition('users', $conditions, $data);
+     * if ($result !== false) {
+     *     // Xử lý thành công
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function updateByCondition($table, $conditions, $data)
     {
@@ -163,6 +217,15 @@ class BaseModel
      * @param string $table Tên bảng.
      * @param int $id ID của bản ghi.
      * @return bool Trả về true nếu thành công, false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $userId = 1;
+     * $result = $this->delete('users', $userId);
+     * if ($result !== false) {
+     *     // Xử lý thành công
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function delete($table, $id)
     {
@@ -183,6 +246,16 @@ class BaseModel
      * @param string $column Tên cột.
      * @param mixed $value Giá trị của cột.
      * @return bool Trả về true nếu thành công, false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $columnName = 'status';
+     * $columnValue = 'inactive';
+     * $result = $this->deleteByColumn('users', $columnName, $columnValue);
+     * if ($result !== false) {
+     *     // Xử lý thành công
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function deleteByColumn($table, $column, $value)
     {
@@ -202,6 +275,15 @@ class BaseModel
      * @param string $table Tên bảng.
      * @param int $id ID của bản ghi.
      * @return array|false Bản ghi hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $userId = 1;
+     * $user = $this->find('users', $userId);
+     * if ($user !== false) {
+     *     // Xử lý dữ liệu của $user
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function find($table, $id)
     {
@@ -213,7 +295,18 @@ class BaseModel
      *
      * @param string $table Tên bảng.
      * @return array|false Danh sách các bản ghi hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $users = $this->findAll('users');
+     * if ($users !== false) {
+     *     foreach ($users as $user) {
+     *         // Xử lý từng bản ghi trong $users
+     *     }
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
+
     public function findAll($table)
     {
         $sql = "SELECT * FROM $table";
@@ -232,6 +325,17 @@ class BaseModel
      * @param string $table Tên bảng.
      * @param array $conditions Các điều kiện truy vấn.
      * @return array|false Danh sách các bản ghi hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $conditions = ['status' => 'active', 'role' => 'admin'];
+     * $users = $this->where('users', $conditions);
+     * if ($users !== false) {
+     *     foreach ($users as $user) {
+     *         // Xử lý từng bản ghi trong $users
+     *     }
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function where($table, $conditions)
     {
@@ -252,7 +356,16 @@ class BaseModel
 
     /**
      * Bắt đầu một giao dịch.
-     */
+     * 
+     * Cách sử dụng:
+     * $this->beginTransaction();
+     * // Thực hiện các thao tác thay đổi dữ liệu trong giao dịch
+//  * if (/* các thao tác thành công */
+    //  *     $this->commit();
+    //  * } else {
+    //  *     $this->rollback();
+    //  * }
+    //  */
     public function beginTransaction()
     {
         $this->pdo->beginTransaction();
@@ -260,7 +373,11 @@ class BaseModel
 
     /**
      * Xác nhận các thay đổi trong giao dịch.
+     * 
+     * Cách sử dụng:
+     * $this->commit();
      */
+
     public function commit()
     {
         $this->pdo->commit();
@@ -268,6 +385,9 @@ class BaseModel
 
     /**
      * Hoàn tác các thay đổi trong giao dịch.
+     * 
+     * Cách sử dụng:
+     * $this->rollback();
      */
     public function rollback()
     {
@@ -280,6 +400,16 @@ class BaseModel
      * @param string $sql Câu lệnh SQL.
      * @param array $params Các tham số cho câu lệnh SQL.
      * @return bool True nếu thành công, False nếu thất bại.
+     * 
+     * Cách sử dụng:
+     * $sql = "UPDATE users SET status = 'inactive' WHERE id = :id";
+     * $params = ['id' => 1];
+     * $result = $this->execute($sql, $params);
+     * if ($result !== false) {
+     *     // Xử lý thành công
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function execute($sql, $params = [])
     {
@@ -298,6 +428,19 @@ class BaseModel
      * @param string $table Tên bảng.
      * @param array $data Danh sách các bản ghi.
      * @return bool True nếu thành công, False nếu thất bại.
+     * 
+     * Cách sử dụng:
+     * $data = [
+     *     ['name' => 'User 1', 'email' => 'user1@example.com'],
+     *     ['name' => 'User 2', 'email' => 'user2@example.com'],
+     *     // Thêm các bản ghi khác nếu cần
+     * ];
+     * $result = $this->bulkInsert('users', $data);
+     * if ($result !== false) {
+     *     // Xử lý thành công
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function bulkInsert($table, $data)
     {
@@ -331,6 +474,20 @@ class BaseModel
      * @param array $fields Các trường cần lấy.
      * @param array $conditions Điều kiện WHERE.
      * @return array|false Kết quả JOIN hoặc False nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $table1 = 'users';
+     * $table2 = 'posts';
+     * $joinCondition = 'users.id = posts.user_id';
+     * $fields = ['users.name', 'posts.title'];
+     * $result = $this->innerJoin($table1, $table2, $joinCondition, $fields);
+     * if ($result !== false) {
+     *     foreach ($result as $row) {
+     *         // Xử lý từng bản ghi trong $result
+     *     }
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function innerJoin($table1, $table2, $joinCondition, $fields = ['*'], $conditions = [])
     {
@@ -346,7 +503,10 @@ class BaseModel
      * @param array $fields Các trường cần lấy.
      * @param array $conditions Điều kiện WHERE.
      * @return array|false Kết quả JOIN hoặc False nếu có lỗi.
+     * 
+     * Cách sử dụng tương tự như innerJoin().
      */
+
     public function leftJoin($table1, $table2, $joinCondition, $fields = ['*'], $conditions = [])
     {
         return $this->joinTables($table1, $table2, $joinCondition, $fields, $conditions, "LEFT");
@@ -361,6 +521,8 @@ class BaseModel
      * @param array $fields Các trường cần lấy.
      * @param array $conditions Điều kiện WHERE.
      * @return array|false Kết quả JOIN hoặc False nếu có lỗi.
+     * 
+     * Cách sử dụng tương tự như innerJoin().
      */
     public function rightJoin($table1, $table2, $joinCondition, $fields = ['*'], $conditions = [])
     {
@@ -377,6 +539,22 @@ class BaseModel
      * @param array $conditions Các điều kiện truy vấn.
      * @param string $joinType Loại JOIN (INNER, LEFT, RIGHT).
      * @return array|false Danh sách các bản ghi hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $table1 = 'users';
+     * $table2 = 'posts';
+     * $joinCondition = 'users.id = posts.user_id';
+     * $fields = ['users.name', 'posts.title'];
+     * $conditions = ['posts.status' => 'published'];
+     * $joinType = 'LEFT';
+     * $result = $this->joinTables($table1, $table2, $joinCondition, $fields, $conditions, $joinType);
+     * if ($result !== false) {
+     *     foreach ($result as $row) {
+     *         // Xử lý từng bản ghi trong $result
+     *     }
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function joinTables($table1, $table2, $joinCondition, $fields = ['*'], $conditions = [], $joinType = "INNER")
     {
@@ -407,6 +585,19 @@ class BaseModel
      * @param string $field Tên trường.
      * @param string $direction Hướng sắp xếp (ASC hoặc DESC).
      * @return array|false Danh sách các bản ghi hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $table = 'users';
+     * $field = 'created_at';
+     * $direction = 'DESC';
+     * $result = $this->orderBy($table, $field, $direction);
+     * if ($result !== false) {
+     *     foreach ($result as $row) {
+     *         // Xử lý từng bản ghi trong $result
+     *     }
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function orderBy($table, $field, $direction = 'ASC')
     {
@@ -427,6 +618,19 @@ class BaseModel
      * @param int $limit Số lượng bản ghi giới hạn.
      * @param int $offset Vị trí bắt đầu lấy bản ghi.
      * @return array|false Danh sách các bản ghi hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $table = 'products';
+     * $limit = 10;
+     * $offset = 0;
+     * $result = $this->limit($table, $limit, $offset);
+     * if ($result !== false) {
+     *     foreach ($result as $row) {
+     *         // Xử lý từng bản ghi trong $result
+     *     }
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function limit($table, $limit, $offset = 0)
     {
@@ -449,6 +653,16 @@ class BaseModel
      * @param string $table Tên bảng.
      * @param array $data Dữ liệu bản ghi.
      * @return bool Trả về true nếu thành công, false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $table = 'users';
+     * $data = ['id' => 1, 'name' => 'John Doe', 'email' => 'john.doe@example.com'];
+     * $result = $this->save($table, $data);
+     * if ($result !== false) {
+     *     // Xử lý thành công
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function save($table, $data)
     {
@@ -463,6 +677,16 @@ class BaseModel
      * Lấy danh sách các bảng trong cơ sở dữ liệu.
      *
      * @return array|false Danh sách các bảng hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $result = $this->getTables();
+     * if ($result !== false) {
+     *     foreach ($result as $table) {
+     *         // Xử lý từng bảng trong $result
+     *     }
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function getTables()
     {
@@ -481,6 +705,17 @@ class BaseModel
      *
      * @param string $table Tên bảng.
      * @return array|false Danh sách các cột hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $table = 'users';
+     * $result = $this->getColumns($table);
+     * if ($result !== false) {
+     *     foreach ($result as $column) {
+     *         // Xử lý từng cột trong $result
+     *     }
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function getColumns($table)
     {
@@ -500,7 +735,18 @@ class BaseModel
      * @param string $table Tên bảng.
      * @param array $conditions Điều kiện kiểm tra.
      * @return bool True nếu tồn tại, False nếu không tồn tại.
+     * 
+     * Cách sử dụng:
+     * $table = 'users';
+     * $conditions = ['id' => 1];
+     * $exists = $this->exists($table, $conditions);
+     * if ($exists) {
+     *     // Bản ghi tồn tại
+     * } else {
+     *     // Bản ghi không tồn tại
+     * }
      */
+
     public function exists($table, $conditions)
     {
         $whereClause = implode(" AND ", array_map(function ($key) {
@@ -524,6 +770,17 @@ class BaseModel
      * @param array $conditions Điều kiện kiểm tra.
      * @param array $data Dữ liệu cần cập nhật hoặc tạo mới.
      * @return bool True nếu thành công, False nếu thất bại.
+     * 
+     * Cách sử dụng:
+     * $table = 'users';
+     * $conditions = ['email' => 'john.doe@example.com'];
+     * $data = ['name' => 'John Doe', 'password' => 'hashed_password'];
+     * $result = $this->updateOrCreate($table, $conditions, $data);
+     * if ($result !== false) {
+     *     // Xử lý thành công
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function updateOrCreate($table, $conditions, $data)
     {
@@ -541,6 +798,19 @@ class BaseModel
      * @param string $column Tên cột.
      * @param array $conditions Điều kiện lọc.
      * @return array|false Danh sách giá trị hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $table = 'users';
+     * $column = 'email';
+     * $conditions = ['status' => 'active'];
+     * $emails = $this->pluck($table, $column, $conditions);
+     * if ($emails !== false) {
+     *     foreach ($emails as $email) {
+     *         // Xử lý từng giá trị email trong $emails
+     *     }
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function pluck($table, $column, $conditions = [])
     {
@@ -567,6 +837,16 @@ class BaseModel
      * @param string $table Tên bảng.
      * @param array $conditions Điều kiện lọc.
      * @return array|false Bản ghi đầu tiên hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $table = 'users';
+     * $conditions = ['status' => 'active'];
+     * $firstUser = $this->first($table, $conditions);
+     * if ($firstUser !== false) {
+     *     // Xử lý bản ghi đầu tiên tìm được
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function first($table, $conditions = [])
     {
@@ -593,6 +873,16 @@ class BaseModel
      * @param string $table Tên bảng.
      * @param array $conditions Điều kiện lọc.
      * @return array|false Bản ghi cuối cùng hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $table = 'users';
+     * $conditions = ['status' => 'active'];
+     * $lastUser = $this->last($table, $conditions);
+     * if ($lastUser !== false) {
+     *     // Xử lý bản ghi cuối cùng tìm được
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function last($table, $conditions = [])
     {
@@ -620,6 +910,18 @@ class BaseModel
      * @param array $data Dữ liệu cần kiểm tra.
      * @param array $rules Các quy tắc kiểm tra.
      * @return array Danh sách các lỗi nếu có.
+     * 
+     * Cách sử dụng:
+     * $data = ['name' => 'John Doe', 'email' => 'john.doe@example.com'];
+     * $rules = ['name' => 'required', 'email' => 'required'];
+     * $validationErrors = $this->validate($data, $rules);
+     * if (!empty($validationErrors)) {
+     *     foreach ($validationErrors as $error) {
+     *         // Xử lý từng lỗi
+     *     }
+     * } else {
+     *     // Dữ liệu hợp lệ, tiếp tục xử lý
+     * }
      */
     public function validate($data, $rules)
     {
@@ -637,7 +939,15 @@ class BaseModel
      *
      * @param object $object Đối tượng cần chuyển đổi.
      * @return array Mảng kết quả.
+     * 
+     * Cách sử dụng:
+     * $object = new stdClass();
+     * $object->name = 'John Doe';
+     * $object->email = 'john.doe@example.com';
+     * $arrayData = $this->toArray($object);
+     * // Sử dụng $arrayData như một mảng thông thường
      */
+
     public function toArray($object)
     {
         return (array)$object;
@@ -648,6 +958,13 @@ class BaseModel
      *
      * @param object $object Đối tượng cần chuyển đổi.
      * @return string Chuỗi JSON kết quả.
+     * 
+     * Cách sử dụng:
+     * $object = new stdClass();
+     * $object->name = 'John Doe';
+     * $object->email = 'john.doe@example.com';
+     * $jsonData = $this->toJson($object);
+     * // Sử dụng $jsonData là chuỗi JSON
      */
     public function toJson($object)
     {
@@ -658,6 +975,12 @@ class BaseModel
      * Lấy danh sách các lỗi xảy ra.
      *
      * @return array Danh sách các lỗi.
+     * 
+     * Cách sử dụng:
+     * $errors = $this->getErrors();
+     * foreach ($errors as $error) {
+     *     // Xử lý từng lỗi
+     * }
      */
     public function getErrors()
     {
@@ -672,6 +995,18 @@ class BaseModel
      * @param mixed $value Giá trị của cột.
      * @param bool $getAll Lấy tất cả các kết quả hoặc chỉ một kết quả.
      * @return array|false Danh sách các bản ghi hoặc một bản ghi hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $table = 'users';
+     * $column = 'email';
+     * $value = 'john.doe@example.com';
+     * $getAllResults = false;
+     * $user = $this->findByColumn($table, $column, $value, $getAllResults);
+     * if ($user !== false) {
+     *     // Xử lý bản ghi hoặc danh sách bản ghi tìm được
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function findByColumn($table, $column, $value, $getAll = false)
     {
@@ -691,6 +1026,15 @@ class BaseModel
      *
      * @param string $table Tên bảng.
      * @return int|false Số lượng bản ghi hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $table = 'users';
+     * $count = $this->count($table);
+     * if ($count !== false) {
+     *     // Xử lý số lượng bản ghi đếm được
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function count($table)
     {
@@ -710,6 +1054,16 @@ class BaseModel
      * @param string $table Tên bảng.
      * @param string $column Tên cột.
      * @return float|false Tổng của cột hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $table = 'products';
+     * $column = 'price';
+     * $totalPrice = $this->sum($table, $column);
+     * if ($totalPrice !== false) {
+     *     // Xử lý tổng giá trị của cột
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function sum($table, $column)
     {
@@ -729,6 +1083,16 @@ class BaseModel
      * @param string $table Tên bảng.
      * @param string $column Tên cột.
      * @return float|false Giá trị trung bình của cột hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $table = 'products';
+     * $column = 'price';
+     * $averagePrice = $this->avg($table, $column);
+     * if ($averagePrice !== false) {
+     *     // Xử lý giá trị trung bình của cột
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function avg($table, $column)
     {
@@ -748,6 +1112,16 @@ class BaseModel
      * @param string $table Tên bảng.
      * @param string $column Tên cột.
      * @return float|false Giá trị lớn nhất của cột hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $table = 'products';
+     * $column = 'price';
+     * $maxPrice = $this->max($table, $column);
+     * if ($maxPrice !== false) {
+     *     // Xử lý giá trị lớn nhất của cột
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function max($table, $column)
     {
@@ -767,6 +1141,16 @@ class BaseModel
      * @param string $table Tên bảng.
      * @param string $column Tên cột.
      * @return float|false Giá trị nhỏ nhất của cột hoặc false nếu có lỗi.
+     * 
+     * Cách sử dụng:
+     * $table = 'products';
+     * $column = 'price';
+     * $minPrice = $this->min($table, $column);
+     * if ($minPrice !== false) {
+     *     // Xử lý giá trị nhỏ nhất của cột
+     * } else {
+     *     // Xử lý lỗi
+     * }
      */
     public function min($table, $column)
     {

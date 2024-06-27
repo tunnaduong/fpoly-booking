@@ -1,7 +1,7 @@
 @extends('layout.main')
 @section('content')
     @php
-        $mainTitleContent = 'Room';
+        $mainTitleContent = 'User';
     @endphp
-    @include('pages.admin.manage.tableAction');
+    @include('pages.admin.manage.tableAction')
 @endsection

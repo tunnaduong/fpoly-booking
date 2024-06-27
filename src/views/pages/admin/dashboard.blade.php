@@ -1,20 +1,21 @@
 @extends('layout.main')
+@section('title', 'Dashboard Admin')
 @section('content')
-    {{-- Title start --}}
+    {{-- start mainTittleContent  --}}
     <div class="row">
-        @include('components.mainTitleContent.master');
+        @include('components.mainTitleContent.master')
     </div>
-    {{-- Title end  --}}
-    {{-- Hero start  --}}
+    {{-- end mainTittleContent --}}
+    {{-- start dataCard  --}}
     <div class="row">
-        @include('components.hero.master');
-        @include('components.dataCard.master');
+        @include('components.hero.master')
+        @include('components.dataCard.master')
     </div>
-    {{-- Hero end ? --}}
-    {{-- Overview start --}}
+    {{-- end dataCard --}}
+    {{-- start overviewChart  --}}
     <div class="row">
-        @include('components.overviewChart.colChart');
-        @include('components.overviewChart.lineChart');
+        @include('components.overviewChart.colChart')
+        @include('components.overviewChart.lineChart')
     </div>
-    {{-- Overview end --}}
+    {{-- end overviewChart --}}
 @endsection

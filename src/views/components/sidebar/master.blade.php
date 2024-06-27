@@ -2,86 +2,59 @@
     $navLinks = [
         [
             'icon' => 'icon-grid',
-            'title' => 'Dashboard',
-            'href' => BASE_URL_ADMIN,
+            'title' => 'Bảng điều khiển',
+            'href' => '/',
+            'havingArrow' => false,
+            'id' => 'dashboard',
         ],
         [
-            'icon' => 'icon-layout',
-            'title' => 'UI Elements',
-            'href' => '#ui-basic',
-            'subMenu' => [
-                [
-                    'title' => 'Buttons',
-                    'href' => 'pages/ui-features/buttons.html',
-                ],
-                [
-                    'title' => 'Dropdowns',
-                    'href' => 'pages/ui-features/dropdowns.html',
-                ],
-                [
-                    'title' => 'Typography',
-                    'href' => 'pages/ui-features/typography.html',
-                ],
-            ],
+            'icon' => 'mdi mdi-magnify',
+            'title' => 'Tìm kiếm',
+            'href' => '/search',
+            'id' => 'search',
+            'havingArrow' => false,
         ],
         [
-            'icon' => 'icon-columns',
-            'title' => 'Form elements',
-            'href' => '#form-elements',
-            'subMenu' => [
-                [
-                    'title' => 'Basic Elements',
-                    'href' => 'pages/forms/basic_elements.html',
-                ],
-            ],
+            'icon' => 'mdi mdi-door-closed',
+            'title' => 'Quản lý phòng',
+            'href' => '/room/manage',
+            'id' => 'room-manage',
+            'havingArrow' => false,
         ],
         [
-            'icon' => 'icon-bar-graph',
-            'title' => 'Charts',
-            'href' => '#charts',
-            'subMenu' => [
-                [
-                    'title' => 'ChartJs',
-                    'href' => 'pages/charts/chartjs.html',
-                ],
-            ],
+            'icon' => 'mdi mdi-plus',
+            'title' => 'Đặt phòng',
+            'href' => '/room/book',
+            'id' => 'room-book',
+            'havingArrow' => false,
         ],
         [
-            'icon' => 'icon-grid-2',
-            'title' => 'Tables',
-            'href' => '#tables',
-            'subMenu' => [
-                [
-                    'title' => 'Basic table',
-                    'href' => 'pages/tables/basic-table.html',
-                ],
-            ],
+            'icon' => 'mdi mdi-calendar-clock',
+            'title' => 'Lịch trình',
+            'href' => '/schedule',
+            'id' => 'schedule',
+            'havingArrow' => false,
         ],
         [
-            'icon' => 'icon-contract',
-            'title' => 'Icons',
-            'href' => '#icons',
-            'subMenu' => [
-                [
-                    'title' => 'Mdi icons',
-                    'href' => 'pages/icons/mdi.html',
-                ],
-            ],
+            'icon' => 'mdi mdi-history',
+            'title' => 'Lịch sử',
+            'href' => '/history',
+            'id' => 'history',
+            'havingArrow' => false,
+        ],
+        [
+            'icon' => 'mdi mdi-finance',
+            'title' => 'Thống kê',
+            'href' => '/statistic',
+            'id' => 'statistic',
+            'havingArrow' => false,
         ],
         [
             'icon' => 'icon-head',
-            'title' => 'User Pages',
-            'href' => '#auth',
-            'subMenu' => [
-                [
-                    'title' => 'Login',
-                    'href' => 'pages/samples/login.html',
-                ],
-                [
-                    'title' => 'Register',
-                    'href' => 'pages/samples/register.html',
-                ],
-            ],
+            'title' => 'Người dùng',
+            'href' => '/user/manage',
+            'id' => 'user-manage',
+            'havingArrow' => false,
         ],
     ];
 @endphp
@@ -91,13 +64,19 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         @foreach ($navLinks as $navLink)
-            <li class="nav-item">
-                <a class="nav-link" href="{{ $navLink['href'] }}">
+            {{-- add dynamic active class to nav-item --}}
+            <li class="nav-item {{ $_SERVER['REQUEST_URI'] === $navLink['href'] ? 'active' : '' }}">
+                <a class="nav-link" href="{{ $navLink['href'] }}" {!! $navLink['havingArrow'] == true
+                    ? 'data-toggle="collapse" aria-expanded="false" aria-controls="' . $navLink['id'] . '"'
+                    : '' !!}>
                     <i class="{{ $navLink['icon'] }} menu-icon"></i>
                     <span class="menu-title">{{ $navLink['title'] }}</span>
+                    @unless ($navLink['havingArrow'] == false)
+                        <i class="menu-arrow"></i>
+                    @endunless
                 </a>
                 @if (isset($navLink['subMenu']))
-                    <div class="collapse" id="{{ $navLink['href'] }}">
+                    <div class="collapse" id="{{ $navLink['id'] }}">
                         <ul class="nav flex-column sub-menu">
                             @foreach ($navLink['subMenu'] as $subMenu)
                                 <li class="nav-item">

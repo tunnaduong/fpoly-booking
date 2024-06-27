@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layout.error')
 @section('content')
     <div class="container-scroller">
         <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -16,12 +16,13 @@
                         </div>
                         <div class="row mt-5">
                             <div class="col-12 text-center mt-xl-2">
-                                <a class="text-white font-weight-medium" href="../../index.html">Back to home</a>
+                                <a class="text-white font-weight-medium" href="/">Back to home</a>
                             </div>
                         </div>
                         <div class="row mt-5">
                             <div class="col-12 mt-xl-2">
-                                <p class="text-white font-weight-medium text-center">Copyright &copy; 2021 All rights
+                                <p class="text-white font-weight-medium text-center">Copyright &copy; 2024 FPoly Booking.
+                                    All rights
                                     reserved.</p>
                             </div>
                         </div>

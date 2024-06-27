@@ -15,3 +15,6 @@
   <link rel="stylesheet" href="{{ BASE_URL . 'css/style.css' }}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{{ BASE_URL . 'images/favicon.png' }}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  

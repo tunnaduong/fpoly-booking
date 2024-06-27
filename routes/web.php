@@ -29,6 +29,12 @@ try {
 
     $router->get('/room/manage', [RoomController::class, 'index']);
 
+
+
+
+    $router->get('/user/manage', [UserController::class, 'index']);
+    $router->get('/user/delete/{id}', [UserController::class, 'delUser']);
+
     // end route
     $routeData = $router->getData();
     // Kiểm tra dữ liệu router

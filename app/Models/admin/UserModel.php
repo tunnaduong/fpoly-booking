@@ -11,7 +11,13 @@ class UserModel extends BaseModel
     //lấy toàn bộ dữ liệu
     public function getUsers()
     {
-        return $this->findAll($this->table);
+        $sql = "SELECT u.id, u.name as user_name, u.code, u.email, u.phone, r.name as role_name
+                FROM users u
+                JOIN roles r ON r.id = u.role_id
+                ORDER BY u.id desc";
+
+        return $this->query($sql);        
+        // return $this->findAll($this->table);
     }
 
     //lấy dữ liệu theo id
@@ -55,7 +61,12 @@ class UserModel extends BaseModel
     //xóa dữ liệu
     public function deleteUser($id)
     {
-        return $this->delete($this->table, $id);
+        $result = $this->delete($this->table, $id);
+        if($result){
+            return true;
+        }else{
+            dd($this->getErrors());
+        }
     }
 
     //đếm số bản ghi

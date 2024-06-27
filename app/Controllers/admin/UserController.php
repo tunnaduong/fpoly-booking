@@ -18,6 +18,45 @@ class UserController extends BaseController
         $this->userModel = new UserModel();
     }
 
+    public function index()
+    {
+        $data = $this->userModel->getUsers();
+
+
+
+        $header = [
+            'id' => '#',
+            'user_name' => 'Tên người dùng',
+            'code' => 'Code',
+            'email' => 'Email',
+            'phone' => 'Số điện thoại',
+            'role_name' => 'Quyền'
+        ];
+
+
+        $card = [
+            'title' => 'Quản lý người dùng',
+            'description' => 'Quản lý',
+            'table' => [
+                'style' => 'hover',
+                'header' => $header,
+                'data' => $data
+            ],
+        ];
+
+
+        // echo '<pre>';
+        // var_export($card);
+        // echo '</pre>';
+
+        // die();
+
+
+
+
+        $this->render('pages.admin.manage.user', compact('card'));
+    }
+
     public function login()
     {
         try {
@@ -58,10 +97,20 @@ class UserController extends BaseController
     }
 
     // xóa user
-    public function deleteUser()
+    public function delUser($id)
     {
-        $userID = $this->getInput('userID');
-        return $this->userModel->deleteUser($userID);
+ 
+        $result = $this->userModel->deleteUser($id);
+        //thông báo
+        if($result){
+            $this->setFlash('success', 'User deleted successfully');
+            header('Location: '. BASE_URL. 'user/manage');
+        }else{
+            $this->setFlash('error', 'User not deleted');
+            header('Location: '. BASE_URL. 'user/manage');
+        }
+
+
     }
 
     // sửa user

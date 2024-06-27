@@ -52,7 +52,7 @@
         [
             'icon' => 'icon-head',
             'title' => 'Người dùng',
-            'href' => '/users',
+            'href' => '/user/manage',
             'id' => 'user-manage',
             'havingArrow' => false,
         ],

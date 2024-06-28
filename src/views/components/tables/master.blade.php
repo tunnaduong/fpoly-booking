@@ -1,42 +1,45 @@
 @php
-    $tableStyle = [
-        'hover' => 'table-hover',
-        'striped' => 'table-striped',
-        'bordered' => 'table-bordered',
-    ];
+    // $tableStyle = [
+    //     'hover' => 'table-hover',
+    //     'striped' => 'table-striped',
+    //     'bordered' => 'table-bordered',
+    // ];
 
-    $card = $card ?? [
+    $card = setVarAsDefault($card, [
         'title' => 'Main Title',
         'description' => 'detail',
         'table' => [
-            'style' => 'hover',
-            'header' => [
-                'id' => '#',
-                'first_name' => 'First name',
-                'product' => 'Product',
-                'amount' => 'Amount',
-                'deadline' => 'Deadline',
-            ],
-            'data' => [
-                [
-                    'id' => 1,
-                    'first_name' => 'Herman Beck',
-                    'product' => 'Photoshop',
-                    'amount' => '$ 77.99',
-                    'deadline' => 'May 15, 2015',
-                    'class' => 'table-info',
-                ],
-            ],
+            // 'style' => 'hover',
+            // 'header' => [
+            //     'id' => '#',
+            //     'first_name' => 'First name',
+            //     'product' => 'Product',
+            //     'amount' => 'Amount',
+            //     'deadline' => 'Deadline',
+            // ],
+            // 'data' => [
+            //     [
+            //         'id' => 1,
+            //         'first_name' => 'Herman Beck',
+            //         'product' => 'Photoshop',
+            //         'amount' => '$ 77.99',
+            //         'deadline' => 'May 15, 2015',
+            //         'class' => 'table-info',
+            //     ],
+            // ],
         ],
-    ];
+    ]);
 
-    $action = $action ?? [
-        'data' => 'user',
+    $table = setVarAsDefault($table, [
+        'user' => '/user/',
+    ]);
+
+    $action = setVarAsDefault($action, [
         'href' => [
-            'edit' => $this['data'] . '/edit/',
-            'delete' => $this['data'] . '/delete/',
+            'edit' => $table . 'edit/',
+            'delete' => $table . 'delete/',
         ],
-    ];
+    ]);
 @endphp
 
 
@@ -47,7 +50,7 @@
             <h4 class="card-title">{{ $card['title'] }}</h4>
             <p class="card-description">{{ $card['description'] }}</p>
             <div class="table-responsive pt-3">
-                <table class="table {{ $tableStyle[$card['table']['style']] }}">
+                <table class="table-hover">
                     {{-- No data table  --}}
                     @if ($card['table']['data'] == null)
                         <thead>
@@ -78,9 +81,9 @@
                                     @endforeach
                                     {{-- Action Colum  --}}
                                     <td>
-                                        <a href="{{$action['href']['edit'] . $row['id']}}" class="btn btn-success"
+                                        <a href="{{ $action['href']['edit'] . $row['id'] }}" class="btn btn-success"
                                             onclick="return confirm('Are you sure you want to edit?')">Edit</a>
-                                        <a href="{{$action['href']['delete'] . $row['id']}}" class="btn btn-danger"
+                                        <a href="{{ $action['href']['delete'] . $row['id'] }}" class="btn btn-danger"
                                             onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                                     </td>
                                 </tr>

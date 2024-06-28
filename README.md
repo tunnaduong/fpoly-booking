@@ -1,12 +1,12 @@
 # fpoly-booking
 Nền tảng đặt phòng online cho Trường Cao đẳng FPT Polytechnic Hà Nam
 
-# Set - up
- - 1. Tải thư viện vendor 
+# Setup
+1. Tải thư viện vendor 
     - Terminal: composer install
-    - Tạo file config.php trong thư mục config:
-
-    ### Copy here
+    - Sửa lại file config.php trong thư mục config để phù hợp với Database:  
+  
+    ```
         <?php
         // Configuration settings
         // Biến môi trường, dùng chung toàn hệ thống
@@ -24,8 +24,7 @@ Nền tảng đặt phòng online cho Trường Cao đẳng FPT Polytechnic Hà 
         // đẩy đường dẫn lên cấp cao nhất
         define('PATH_ROOT', __DIR__ . '/../');
         ?>
-    ### Code end
-
+    ```
 
 # Chú ý:
 -  Tất cả các define mặc định nằm trong config/config.php, thiết lập trước khi sử dụng

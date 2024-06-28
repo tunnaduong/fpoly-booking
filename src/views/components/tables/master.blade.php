@@ -29,6 +29,14 @@
             ],
         ],
     ];
+
+    $action = $action ?? [
+        'data' => 'user',
+        'href' => [
+            'edit' => $this['data'] . '/edit/',
+            'delete' => $this['data'] . '/delete/',
+        ],
+    ];
 @endphp
 
 
@@ -53,32 +61,31 @@
                             </tr>
                         </tbody>
                     @else
-
-                    {{-- Data table  --}}
-                    <thead>
-                        <tr>
-                            @foreach ($card['table']['header'] as $header)
-                                <th>{{ $header }}</th>
-                            @endforeach
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($card['table']['data'] as $row)
-                            <tr class="{{ $row['class'] }}">
-                                {{-- Data Colum  --}}
-                                @foreach ($row as $col => $data)
-                                    <td>{{ $data }}</td>
+                        {{-- Data table  --}}
+                        <thead>
+                            <tr>
+                                @foreach ($card['table']['header'] as $header)
+                                    <th>{{ $header }}</th>
                                 @endforeach
-                                {{-- Action Colum  --}}
-                                <td>
-                                    <a href="" class="btn btn-success"
-                                        onclick="return confirm('Are you sure you want to edit?')">Edit</a>
-                                    <a href="/user/delete/{{$row['id']}}" class="btn btn-danger"
-                                        onclick="return confirm('Are you sure you want to delete?')">Delete</a>
-                                </td>
                             </tr>
-                        @endforeach
-                    </tbody>
+                        </thead>
+                        <tbody>
+                            @foreach ($card['table']['data'] as $row)
+                                <tr class="{{ $row['class'] }}">
+                                    {{-- Data Colum  --}}
+                                    @foreach ($row as $col => $data)
+                                        <td>{{ $data }}</td>
+                                    @endforeach
+                                    {{-- Action Colum  --}}
+                                    <td>
+                                        <a href="{{$action['href']['edit'] . $row['id']}}" class="btn btn-success"
+                                            onclick="return confirm('Are you sure you want to edit?')">Edit</a>
+                                        <a href="{{$action['href']['delete'] . $row['id']}}" class="btn btn-danger"
+                                            onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     @endif
                 </table>
             </div>

@@ -41,4 +41,9 @@ class DashboardController extends BaseController
     {
         $this->render('pages.error-404');
     }
+
+    public function error500($error)
+    {
+        $this->render('pages.error-500', compact("error"));
+    }
 }

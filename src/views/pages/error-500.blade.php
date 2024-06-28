@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layout.error')
 @section('content')
     <div class="container-scroller">
         <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -13,6 +13,10 @@
                                 <h2>SORRY!</h2>
                                 <h3 class="font-weight-light">Internal server error!</h3>
                             </div>
+                        </div>
+                        <div>
+                            If you are the developer:
+                            {!! $error !!}
                         </div>
                         <div class="row mt-5">
                             <div class="col-12 text-center mt-xl-2">

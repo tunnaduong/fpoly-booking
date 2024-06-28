@@ -1,43 +1,51 @@
 @php
-    $tableStyle = [
-        'hover' => 'table-hover',
-        'striped' => 'table-striped',
-        'bordered' => 'table-bordered',
-    ];
+    /* 
+    Các giá trị cần truyền vào:
+        $card['table']['name']
+        $card['table']['header']
+        $card['table']['data']
+    
+    */
 
-    $card = $card ?? [
+    $card = setVarAsDefault($card, [
         'title' => 'Main Title',
         'description' => 'detail',
         'table' => [
-            'style' => 'hover',
-            'header' => [
-                'id' => '#',
-                'first_name' => 'First name',
-                'product' => 'Product',
-                'amount' => 'Amount',
-                'deadline' => 'Deadline',
-            ],
-            'data' => [
-                [
-                    'id' => 1,
-                    'first_name' => 'Herman Beck',
-                    'product' => 'Photoshop',
-                    'amount' => '$ 77.99',
-                    'deadline' => 'May 15, 2015',
-                    'class' => 'table-info',
-                ],
-            ],
+            // 'style' => 'hover',
+            // 'name' => 'user',
+            // 'header' => [
+            //     'id' => '#',
+            //     'first_name' => 'First name',
+            //     'product' => 'Product',
+            //     'amount' => 'Amount',
+            //     'deadline' => 'Deadline',
+            // ],
+            // 'data' => [
+            //     [
+            //         'id' => 1,
+            //         'first_name' => 'Herman Beck',
+            //         'product' => 'Photoshop',
+            //         'amount' => '$ 77.99',
+            //         'deadline' => 'May 15, 2015',
+            //         'class' => 'table-info',
+            //     ],
+            // ],
         ],
-    ];
+    ]);
 
-    // $action = $action ?? [
-    //     'data' => 'user',
-    //     'href' => [
-    //         'edit' => $this['data'] . '/edit/',
-    //         'delete' => $this['data'] . '/delete/',
-    //     ],
-    // ];
+    $tableName = $card['table']['name'] ?? 'defaut';
 
+    $linkAction = setVarAsDefault($table, [
+        'user' => '/user/',
+        'defaut' => '/user/'
+    ]);
+
+    $action = setVarAsDefault($action, [
+        'href' => [
+            'edit' => $linkAction[$tableName] . 'edit/',
+            'delete' => $linkAction[$tableName] . 'delete/',
+        ],
+    ]);
 @endphp
 
 
@@ -48,7 +56,7 @@
             <h4 class="card-title">{{ $card['title'] }}</h4>
             <p class="card-description">{{ $card['description'] }}</p>
             <div class="table-responsive pt-3">
-                <table class="table {{ $tableStyle[$card['table']['style']] }}">
+                <table class="table-hover">
                     {{-- No data table  --}}
                     @if ($card['table']['data'] == null)
                         <thead>

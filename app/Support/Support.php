@@ -49,3 +49,23 @@ if (!function_exists('get_session')) {
         return isset($_SESSION[$key]) ? $_SESSION[$key] : $default;
     }
 }
+
+function convertToArray($variable = []): array
+{
+    if (is_array($variable)) {
+        return $variable;
+    } else {
+        return [$variable];// Wrap the variable in an array and return it.
+    }
+}
+
+function setVarAsDefault($var, array $data = []) 
+{
+    $var = convertToArray($var);
+    if ($data == null) {
+        return $var;
+    } else {
+        // array_diff_key: lọc key đã tồn tại trong mảng
+        return array_merge($var, array_diff_key($data, $var));
+    }
+}

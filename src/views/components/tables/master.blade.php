@@ -30,13 +30,14 @@
         ],
     ];
 
-    $action = $action ?? [
-        'data' => 'user',
-        'href' => [
-            'edit' => $this['data'] . '/edit/',
-            'delete' => $this['data'] . '/delete/',
-        ],
-    ];
+    // $action = $action ?? [
+    //     'data' => 'user',
+    //     'href' => [
+    //         'edit' => $this['data'] . '/edit/',
+    //         'delete' => $this['data'] . '/delete/',
+    //     ],
+    // ];
+
 @endphp
 
 
@@ -78,9 +79,9 @@
                                     @endforeach
                                     {{-- Action Colum  --}}
                                     <td>
-                                        <a href="{{$action['href']['edit'] . $row['id']}}" class="btn btn-success"
+                                        <a href="{{ $action['href']['edit'] . $row['id'] }}" class="btn btn-success"
                                             onclick="return confirm('Are you sure you want to edit?')">Edit</a>
-                                        <a href="{{$action['href']['delete'] . $row['id']}}" class="btn btn-danger"
+                                        <a href="{{ $action['href']['delete'] . $row['id'] }}" class="btn btn-danger"
                                             onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                                     </td>
                                 </tr>

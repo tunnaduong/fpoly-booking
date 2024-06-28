@@ -48,7 +48,7 @@ try {
 } catch (Phroute\Phroute\Exception\HttpRouteNotFoundException $e) {
     (new DashboardController())->error404();
 } catch (Phroute\Phroute\Exception\HttpMethodNotAllowedException $e) {
-    dd('2' . $e->getMessage());
+    (new DashboardController())->error500($e->getMessage());
 } catch (Exception $e) {
-    dd('3' . $e->getMessage());
+    (new DashboardController())->error500($e->getMessage());
 }

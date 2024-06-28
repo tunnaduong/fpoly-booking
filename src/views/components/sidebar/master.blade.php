@@ -65,7 +65,7 @@
     <ul class="nav">
         @foreach ($navLinks as $navLink)
             {{-- add dynamic active class to nav-item --}}
-            <li class="nav-item {{ $_SERVER['REQUEST_URI'] === $navLink['href'] ? 'active' : '' }}">
+            <li class="nav-item {{ $_SERVER['REQUEST_URI'] == $navLink['href'] ? 'active' : '' }}">
                 <a class="nav-link" href="{{ $navLink['href'] }}" {!! $navLink['havingArrow'] == true
                     ? 'data-toggle="collapse" aria-expanded="false" aria-controls="' . $navLink['id'] . '"'
                     : '' !!}>

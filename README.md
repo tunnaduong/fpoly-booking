@@ -4,7 +4,7 @@ Nền tảng đặt phòng online cho Trường Cao đẳng FPT Polytechnic Hà 
 # Setup
 1. Tải thư viện vendor 
     - Terminal: composer install
-    - Sửa lại file config.php trong thư mục config để phù hợp với Database:  
+    - Tạo file config.php trong thư mục config:  
   
     ```
         <?php

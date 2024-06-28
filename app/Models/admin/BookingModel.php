@@ -23,14 +23,12 @@ class BookingModel extends BaseModel
     public function getAll()
     {
         $sql = "SELECT * FROM $this->table";
-        $this->query($sql);
         return $this->query($sql);
     }
     // lấy dữ liệu theo id
     public function getBookingById($id)
     {
         $sql = "SELECT * FROM $this->table WHERE id = :id";
-        $this->query($sql);
         return $this->execute($sql, ['id' => $id]);
     }
     // thêm mới booking
@@ -65,16 +63,15 @@ class BookingModel extends BaseModel
     public function deleteBookings($id)
     {
         $sql = "DELETE FROM $this->table WHERE id = :id";
-        $this->query($sql);
         return $this->execute($sql, ['id' => $id]);
     }
     // đếm số bản ghi
     public function countBookings()
     {
         $sql = "SELECT COUNT(*) as count FROM $this->table";
-        $this->query($sql);
         $result = $this->query($sql);
         return $result[0]['count'];
     }
+
 }
 

@@ -25,6 +25,9 @@ class DashboardController extends BaseController
 
     public function login()
     {
+        if (isset($_SESSION['user'])) {
+            header('Location: ' . BASE_URL);
+        }
         $this->render('login');
     }
 

@@ -1,15 +1,18 @@
 @php
-    // $tableStyle = [
-    //     'hover' => 'table-hover',
-    //     'striped' => 'table-striped',
-    //     'bordered' => 'table-bordered',
-    // ];
+    /* 
+    Các giá trị cần truyền vào:
+        $card['table']['name']
+        $card['table']['header']
+        $card['table']['data']
+    
+    */
 
     $card = setVarAsDefault($card, [
         'title' => 'Main Title',
         'description' => 'detail',
         'table' => [
             // 'style' => 'hover',
+            // 'name' => 'user',
             // 'header' => [
             //     'id' => '#',
             //     'first_name' => 'First name',
@@ -30,14 +33,17 @@
         ],
     ]);
 
-    $table = setVarAsDefault($table, [
+    $tableName = $card['table']['name'] ?? 'defaut';
+
+    $linkAction = setVarAsDefault($table, [
         'user' => '/user/',
+        'defaut' => '/user/'
     ]);
 
     $action = setVarAsDefault($action, [
         'href' => [
-            'edit' => $table . 'edit/',
-            'delete' => $table . 'delete/',
+            'edit' => $linkAction[$tableName] . 'edit/',
+            'delete' => $linkAction[$tableName] . 'delete/',
         ],
     ]);
 @endphp
